@@ -33,6 +33,7 @@ public class MenuView extends javax.swing.JFrame {
         jmiCadPessoa = new javax.swing.JMenuItem();
         jmnList = new javax.swing.JMenu();
         jmiListPessoa = new javax.swing.JMenuItem();
+        jmiAnimal = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Manica Farm 2016");
@@ -60,6 +61,14 @@ public class MenuView extends javax.swing.JFrame {
         });
         jmnList.add(jmiListPessoa);
 
+        jmiAnimal.setText("Animal");
+        jmiAnimal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAnimalActionPerformed(evt);
+            }
+        });
+        jmnList.add(jmiAnimal);
+
         menuBar.add(jmnList);
 
         setJMenuBar(menuBar);
@@ -68,11 +77,13 @@ public class MenuView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 902, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
         );
 
         pack();
@@ -84,6 +95,13 @@ public class MenuView extends javax.swing.JFrame {
         this.desktopPane.add(view);
         view.setVisible(true);
     }//GEN-LAST:event_jmiListPessoaActionPerformed
+
+    private void jmiAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAnimalActionPerformed
+        // TODO add your handling code here:
+        AnimalView view = new AnimalView();
+        this.desktopPane.add(view);
+        view.setVisible(true);
+    }//GEN-LAST:event_jmiAnimalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,6 +140,7 @@ public class MenuView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;
+    private javax.swing.JMenuItem jmiAnimal;
     private javax.swing.JMenuItem jmiCadPessoa;
     private javax.swing.JMenuItem jmiListPessoa;
     private javax.swing.JMenu jmnCad;

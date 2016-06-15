@@ -32,6 +32,8 @@ public class PessoaDaoImpl extends CrudDaoImpl<Pessoa, Integer> {
         if (e.getNmPessoa() != null) {
             sql.append("AND p.nmPessoa like :nome ");
         }
+        
+        sql.append("ORDER BY p.nmPessoa");
         return sql.toString();
     }
 

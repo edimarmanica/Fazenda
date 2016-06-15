@@ -33,11 +33,11 @@ public final class PessoaControl {
         dao = ServiceLocator.getPessoaDao();
         pessoasTabela = ObservableCollections.observableList(new ArrayList<Pessoa>());
         
-        novo();
+        limpar();
         pesquisar();
     }
     
-    public void novo() {
+    public void limpar() {
         setPessoaDigitada(new Pessoa());
     }
     
@@ -49,13 +49,13 @@ public final class PessoaControl {
     public void salvar() throws ValidacaoException{
         pessoaDigitada.validar();
         dao.insertOrUpdate(pessoaDigitada);
-        novo();
+        limpar();
         pesquisar();
     }
     
     public void excluir(){
         dao.delete(pessoaDigitada);
-        novo();
+        limpar();
         pesquisar();
     }
     
@@ -77,6 +77,7 @@ public final class PessoaControl {
         this.pessoaSelecionada = pessoaSelecionada;
         
         if (this.pessoaSelecionada != null){
+            System.out.println("aki");
             setPessoaDigitada(pessoaSelecionada);
         }
     }

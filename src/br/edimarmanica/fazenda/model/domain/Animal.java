@@ -5,6 +5,7 @@
  */
 package br.edimarmanica.fazenda.model.domain;
 
+import br.edimarmanica.fazenda.util.ValidacaoException;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
@@ -59,10 +60,10 @@ public class Animal implements Serializable {
     private String nmAnimal;
     @Basic(optional = false)
     @Column(name = "id_sexo")
-    private short idSexo;
+    private Short idSexo;
     @Basic(optional = false)
     @Column(name = "id_situacao")
-    private short idSituacao;
+    private Short idSituacao;
     @Column(name = "dt_nascimento")
     @Temporal(TemporalType.DATE)
     private Date dtNascimento;
@@ -77,11 +78,11 @@ public class Animal implements Serializable {
     private Date dtPegouCria;
     @Basic(optional = false)
     @Column(name = "id_mamando")
-    private short idMamando;
+    private Short idMamando;
     @Column(name = "ds_observacao")
     private String dsObservacao;
     @Column(name = "id_cor")
-    private Integer idCor;
+    private Short idCor;
     @OneToMany(mappedBy = "cdAnimal")
     private Collection<Caixa> caixaCollection;
     @OneToMany(mappedBy = "cdAnimalMae")
@@ -101,7 +102,7 @@ public class Animal implements Serializable {
     private Animal cdTouroPegouCria;
     @JoinColumn(name = "cd_pessoa", referencedColumnName = "cd_pessoa")
     @ManyToOne
-    private Pessoa cdPessoa;
+    private Pessoa pessoa;
 
     public Animal() {
     }
@@ -110,7 +111,7 @@ public class Animal implements Serializable {
         this.cdAnimal = cdAnimal;
     }
 
-    public Animal(Integer cdAnimal, String nmAnimal, short idSexo, short idSituacao, short idMamando) {
+    public Animal(Integer cdAnimal, String nmAnimal, Short idSexo, Short idSituacao, Short idMamando) {
         this.cdAnimal = cdAnimal;
         this.nmAnimal = nmAnimal;
         this.idSexo = idSexo;
@@ -134,19 +135,19 @@ public class Animal implements Serializable {
         this.nmAnimal = nmAnimal;
     }
 
-    public short getIdSexo() {
+    public Short getIdSexo() {
         return idSexo;
     }
 
-    public void setIdSexo(short idSexo) {
+    public void setIdSexo(Short idSexo) {
         this.idSexo = idSexo;
     }
 
-    public short getIdSituacao() {
+    public Short getIdSituacao() {
         return idSituacao;
     }
 
-    public void setIdSituacao(short idSituacao) {
+    public void setIdSituacao(Short idSituacao) {
         this.idSituacao = idSituacao;
     }
 
@@ -186,7 +187,7 @@ public class Animal implements Serializable {
         return idMamando;
     }
 
-    public void setIdMamando(short idMamando) {
+    public void setIdMamando(Short idMamando) {
         this.idMamando = idMamando;
     }
 
@@ -198,11 +199,11 @@ public class Animal implements Serializable {
         this.dsObservacao = dsObservacao;
     }
 
-    public Integer getIdCor() {
+    public Short getIdCor() {
         return idCor;
     }
 
-    public void setIdCor(Integer idCor) {
+    public void setIdCor(Short idCor) {
         this.idCor = idCor;
     }
 
@@ -266,12 +267,12 @@ public class Animal implements Serializable {
         this.cdTouroPegouCria = cdTouroPegouCria;
     }
 
-    public Pessoa getCdPessoa() {
-        return cdPessoa;
+    public Pessoa getPessoa() {
+        return pessoa;
     }
 
-    public void setCdPessoa(Pessoa cdPessoa) {
-        this.cdPessoa = cdPessoa;
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
     @Override
@@ -296,7 +297,13 @@ public class Animal implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edimarmanica.fazenda.bd.Animal[ cdAnimal=" + cdAnimal + " ]";
+        return nmAnimal;
+    }
+    
+    public void validar() throws ValidacaoException{
+        if (this.nmAnimal == null || this.nmAnimal.trim().isEmpty()){
+            throw new ValidacaoException("Campo nome não preenchido!");
+        }
     }
     
 }

@@ -44,12 +44,6 @@ public class Pessoa implements Serializable {
     @Basic(optional = false)
     @Column(name = "nm_pessoa")
     private String nmPessoa;
-    @OneToMany(mappedBy = "cdPessoaEmprestimo")
-    private Collection<Caixa> caixaCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdPessoa")
-    private Collection<Caixa> caixaCollection1;
-    @OneToMany(mappedBy = "cdPessoa")
-    private Collection<Animal> animalCollection;
 
     public Pessoa() {
     }
@@ -79,33 +73,6 @@ public class Pessoa implements Serializable {
         this.nmPessoa = nmPessoa.toUpperCase();
     }
 
-    @XmlTransient
-    public Collection<Caixa> getCaixaCollection() {
-        return caixaCollection;
-    }
-
-    public void setCaixaCollection(Collection<Caixa> caixaCollection) {
-        this.caixaCollection = caixaCollection;
-    }
-
-    @XmlTransient
-    public Collection<Caixa> getCaixaCollection1() {
-        return caixaCollection1;
-    }
-
-    public void setCaixaCollection1(Collection<Caixa> caixaCollection1) {
-        this.caixaCollection1 = caixaCollection1;
-    }
-
-    @XmlTransient
-    public Collection<Animal> getAnimalCollection() {
-        return animalCollection;
-    }
-
-    public void setAnimalCollection(Collection<Animal> animalCollection) {
-        this.animalCollection = animalCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -128,13 +95,13 @@ public class Pessoa implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edimarmanica.fazenda.bd.Pessoa[ cdPessoa=" + cdPessoa + " ]";
+        return nmPessoa;
     }
-    
-    public void validar() throws ValidacaoException{
-        if (this.nmPessoa == null || this.nmPessoa.trim().isEmpty()){
+
+    public void validar() throws ValidacaoException {
+        if (this.nmPessoa == null || this.nmPessoa.trim().isEmpty()) {
             throw new ValidacaoException("Campo nome não preenchido!");
         }
     }
-    
+
 }

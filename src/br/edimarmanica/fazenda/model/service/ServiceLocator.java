@@ -5,6 +5,7 @@
  */
 package br.edimarmanica.fazenda.model.service;
 
+import br.edimarmanica.fazenda.model.dao.AnimalDaoImpl;
 import br.edimarmanica.fazenda.model.dao.CrudDaoImpl;
 import br.edimarmanica.fazenda.model.dao.CrudDao;
 import br.edimarmanica.fazenda.model.dao.PessoaDaoImpl;
@@ -18,5 +19,6 @@ public class ServiceLocator {
     public static CrudDao getPessoaDao() {
         return new PessoaDaoImpl();
     }
+    
     
 }
