@@ -7,7 +7,7 @@ package br.edimarmanica.fazenda.view;
 
 import br.edimarmanica.fazenda.control.AnimalControl;
 import br.edimarmanica.fazenda.control.PessoaControl;
-import br.edimarmanica.fazenda.model.domain.attributes.Sexo;
+import br.edimarmanica.fazenda.model.domain.enums.Sexo;
 import br.edimarmanica.fazenda.util.ValidacaoException;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;

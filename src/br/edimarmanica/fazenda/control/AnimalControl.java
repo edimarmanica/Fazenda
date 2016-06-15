@@ -16,10 +16,10 @@ import org.jdesktop.observablecollections.ObservableCollections;
 import br.edimarmanica.fazenda.model.dao.CrudDao;
 import br.edimarmanica.fazenda.model.domain.Animal;
 import br.edimarmanica.fazenda.model.domain.Pessoa;
-import br.edimarmanica.fazenda.model.domain.attributes.Cor;
-import br.edimarmanica.fazenda.model.domain.attributes.Sexo;
-import br.edimarmanica.fazenda.model.domain.attributes.SimNao;
-import br.edimarmanica.fazenda.model.domain.attributes.Situacao;
+import br.edimarmanica.fazenda.model.domain.enums.Cor;
+import br.edimarmanica.fazenda.model.domain.enums.Sexo;
+import br.edimarmanica.fazenda.model.domain.enums.Booleano;
+import br.edimarmanica.fazenda.model.domain.enums.SituacaoAnimal;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -39,8 +39,8 @@ public final class AnimalControl {
     private List<Animal> maeCombo;
     private List<Animal> touroCombo;
     private List<Sexo> sexoCombo;
-    private List<Situacao> situacaoCombo;
-    private List<SimNao> mamandoCombo;
+    private List<SituacaoAnimal> situacaoCombo;
+    private List<Booleano> mamandoCombo;
     private List<Cor> corCombo;
 
     public List<Animal> getTouroCombo() {
@@ -51,11 +51,11 @@ public final class AnimalControl {
         this.touroCombo = touroCombo;
     }
 
-    public List<Situacao> getSituacaoCombo() {
+    public List<SituacaoAnimal> getSituacaoCombo() {
         return situacaoCombo;
     }
 
-    public void setSituacaoCombo(List<Situacao> situacaoCombo) {
+    public void setSituacaoCombo(List<SituacaoAnimal> situacaoCombo) {
         this.situacaoCombo = situacaoCombo;
     }
 
@@ -78,19 +78,19 @@ public final class AnimalControl {
         maeCombo.addAll(dao.buscarVacasAtivas());
 
         sexoCombo = Arrays.asList(Sexo.values());
-        situacaoCombo = Arrays.asList(Situacao.values());
+        situacaoCombo = Arrays.asList(SituacaoAnimal.values());
         corCombo = Arrays.asList(Cor.values());
-        mamandoCombo = Arrays.asList(SimNao.values());
+        mamandoCombo = Arrays.asList(Booleano.values());
 
         novo();
         pesquisar();
     }
 
-    public List<SimNao> getMamandoCombo() {
+    public List<Booleano> getMamandoCombo() {
         return mamandoCombo;
     }
 
-    public void setMamandoCombo(List<SimNao> mamandoCombo) {
+    public void setMamandoCombo(List<Booleano> mamandoCombo) {
         this.mamandoCombo = mamandoCombo;
     }
 

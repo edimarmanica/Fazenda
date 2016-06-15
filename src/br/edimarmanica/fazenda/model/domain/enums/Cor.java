@@ -3,20 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edimarmanica.fazenda.model.domain.attributes;
+package br.edimarmanica.fazenda.model.domain.enums;
 
 /**
  *
  * @author edimar
  */
-public enum Situacao {
-    Normal((short) 1, "Normal"), Vendido((short) 2, "Vendido"), Morreu((short) 3, "Morreu"),
-    TerceiroAtivo((short) 4, "Terc. Ativo"), TerceiroInativo((short) 5, "Terc. Inativo");
-
+public enum Cor {
+    Branca ((short)1, "Branca"), Preta ((short)2, "Preta"), Holandes((short)3, "Holandês"),
+    Vermelha((short)4, "Vermelha"), Amarela((short)5, "Amarela"), Fumaca((short)6, "Fumaça");
+    
     private short id;
     private String descricao;
 
-    private Situacao(short id, String descricao) {
+    private Cor(short id, String descricao) {
         this.id = id;
         this.descricao = descricao;
     }
@@ -37,10 +37,5 @@ public enum Situacao {
         this.descricao = descricao;
     }
     
-
-    @Override
-    public String toString() {
-        return descricao; //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
 }

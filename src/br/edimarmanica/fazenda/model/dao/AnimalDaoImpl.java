@@ -7,8 +7,8 @@ package br.edimarmanica.fazenda.model.dao;
 
 import br.edimarmanica.fazenda.model.domain.Animal;
 import br.edimarmanica.fazenda.model.domain.Pessoa;
-import br.edimarmanica.fazenda.model.domain.attributes.Sexo;
-import br.edimarmanica.fazenda.model.domain.attributes.Situacao;
+import br.edimarmanica.fazenda.model.domain.enums.Sexo;
+import br.edimarmanica.fazenda.model.domain.enums.SituacaoAnimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -86,16 +86,16 @@ public class AnimalDaoImpl extends CrudDaoImpl<Animal, Integer> {
     public List<Animal> buscarTourosAtivos(){
         AnimalDaoImpl dao = new AnimalDaoImpl();
         Animal requisitos = new Animal();
-        requisitos.setIdSexo(Sexo.M.getId());
-        requisitos.setIdSituacao(Situacao.Normal.getId());
+        requisitos.setIdSexo(Sexo.M);
+        requisitos.setIdSituacao(SituacaoAnimal.Normal);
         return dao.search(requisitos);
     }
     
     public List<Animal> buscarVacasAtivas(){
         AnimalDaoImpl dao = new AnimalDaoImpl();
         Animal requisitos = new Animal();
-        requisitos.setIdSexo(Sexo.F.getId());
-        requisitos.setIdSituacao(Situacao.Normal.getId());
+        requisitos.setIdSexo(Sexo.F);
+        requisitos.setIdSituacao(SituacaoAnimal.Normal);
         return dao.search(requisitos);
     }
 }

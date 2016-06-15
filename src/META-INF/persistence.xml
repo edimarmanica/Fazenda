@@ -10,6 +10,10 @@
     <class>br.edimarmanica.fazenda.model.domain.Saldo</class>
     <class>br.edimarmanica.fazenda.model.domain.Animal</class>
     <class>br.edimarmanica.fazenda.model.domain.Caixa</class>
+    <class>br.edimarmanica.fazenda.model.domain.converters.SexoConverter</class>
+    <class>br.edimarmanica.fazenda.model.domain.converters.CorConverter</class>
+    <class>br.edimarmanica.fazenda.model.domain.converters.BooleanConverter</class>
+    <class>br.edimarmanica.fazenda.model.domain.converters.SituacaoAnimalConverter</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/fazenda"/>
       <property name="javax.persistence.jdbc.user" value="edimar"/>

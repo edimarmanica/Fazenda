@@ -3,28 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edimarmanica.fazenda.model.domain.attributes;
+package br.edimarmanica.fazenda.model.domain.enums;
 
 /**
  *
  * @author edimar
  */
-public enum Cor {
-    Branca (1, "Branca"), Preta (2, "Preta"), Holandes(3, "Holandês"), Vermelha(4, "Vermelha"), Amarela(5, "Amarela"), Fumaca(6, "Fumaça");
-    
-    private int id;
+public enum Booleano {
+    Nao((short)0, "Não"), Sim((short)1, "Sim");
+
+    private short id;
     private String descricao;
 
-    private Cor(int id, String descricao) {
+    private Booleano(short id, String descricao) {
         this.id = id;
         this.descricao = descricao;
     }
 
-    public int getId() {
+    public short getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(short id) {
         this.id = id;
     }
 
@@ -35,6 +35,9 @@ public enum Cor {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return descricao;
+    }
 }

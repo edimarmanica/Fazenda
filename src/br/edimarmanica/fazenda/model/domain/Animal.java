@@ -5,13 +5,21 @@
  */
 package br.edimarmanica.fazenda.model.domain;
 
+import br.edimarmanica.fazenda.model.domain.converters.BooleanConverter;
+import br.edimarmanica.fazenda.model.domain.enums.Booleano;
+import br.edimarmanica.fazenda.model.domain.enums.Cor;
+import br.edimarmanica.fazenda.model.domain.enums.Sexo;
+import br.edimarmanica.fazenda.model.domain.enums.SituacaoAnimal;
+import br.edimarmanica.fazenda.model.domain.converters.CorConverter;
+import br.edimarmanica.fazenda.model.domain.converters.SexoConverter;
+import br.edimarmanica.fazenda.model.domain.converters.SituacaoAnimalConverter;
 import br.edimarmanica.fazenda.util.ValidacaoException;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,12 +28,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -59,11 +65,13 @@ public class Animal implements Serializable {
     @Column(name = "nm_animal")
     private String nmAnimal;
     @Basic(optional = false)
+    @Convert(converter = SexoConverter.class)
     @Column(name = "id_sexo")
-    private Short idSexo;
+    private Sexo idSexo;
     @Basic(optional = false)
+    @Convert(converter = SituacaoAnimalConverter.class)
     @Column(name = "id_situacao")
-    private Short idSituacao;
+    private SituacaoAnimal idSituacao;
     @Column(name = "dt_nascimento")
     @Temporal(TemporalType.DATE)
     private Date dtNascimento;
@@ -77,26 +85,20 @@ public class Animal implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dtPegouCria;
     @Basic(optional = false)
+    @Convert(converter = BooleanConverter.class)
     @Column(name = "id_mamando")
-    private Short idMamando;
+    private Booleano idMamando;
     @Column(name = "ds_observacao")
     private String dsObservacao;
     @Column(name = "id_cor")
-    private Short idCor;
-    @OneToMany(mappedBy = "cdAnimal")
-    private Collection<Caixa> caixaCollection;
-    @OneToMany(mappedBy = "cdAnimalMae")
-    private Collection<Animal> animalCollection;
+    @Convert(converter = CorConverter.class)
+    private Cor idCor;
     @JoinColumn(name = "cd_animal_mae", referencedColumnName = "cd_animal")
     @ManyToOne
     private Animal cdAnimalMae;
-    @OneToMany(mappedBy = "cdAnimalPai")
-    private Collection<Animal> animalCollection1;
     @JoinColumn(name = "cd_animal_pai", referencedColumnName = "cd_animal")
     @ManyToOne
     private Animal cdAnimalPai;
-    @OneToMany(mappedBy = "cdTouroPegouCria")
-    private Collection<Animal> animalCollection2;
     @JoinColumn(name = "cd_touro_pegou_cria", referencedColumnName = "cd_animal")
     @ManyToOne
     private Animal cdTouroPegouCria;
@@ -111,7 +113,7 @@ public class Animal implements Serializable {
         this.cdAnimal = cdAnimal;
     }
 
-    public Animal(Integer cdAnimal, String nmAnimal, Short idSexo, Short idSituacao, Short idMamando) {
+    public Animal(Integer cdAnimal, String nmAnimal, Sexo idSexo, SituacaoAnimal idSituacao, Booleano idMamando) {
         this.cdAnimal = cdAnimal;
         this.nmAnimal = nmAnimal;
         this.idSexo = idSexo;
@@ -135,19 +137,19 @@ public class Animal implements Serializable {
         this.nmAnimal = nmAnimal;
     }
 
-    public Short getIdSexo() {
+    public Sexo getIdSexo() {
         return idSexo;
     }
 
-    public void setIdSexo(Short idSexo) {
+    public void setIdSexo(Sexo idSexo) {
         this.idSexo = idSexo;
     }
 
-    public Short getIdSituacao() {
+    public SituacaoAnimal getIdSituacao() {
         return idSituacao;
     }
 
-    public void setIdSituacao(Short idSituacao) {
+    public void setIdSituacao(SituacaoAnimal idSituacao) {
         this.idSituacao = idSituacao;
     }
 
@@ -183,11 +185,11 @@ public class Animal implements Serializable {
         this.dtPegouCria = dtPegouCria;
     }
 
-    public short getIdMamando() {
+    public Booleano getIdMamando() {
         return idMamando;
     }
 
-    public void setIdMamando(Short idMamando) {
+    public void setIdMamando(Booleano idMamando) {
         this.idMamando = idMamando;
     }
 
@@ -199,30 +201,12 @@ public class Animal implements Serializable {
         this.dsObservacao = dsObservacao;
     }
 
-    public Short getIdCor() {
+    public Cor getIdCor() {
         return idCor;
     }
 
-    public void setIdCor(Short idCor) {
+    public void setIdCor(Cor idCor) {
         this.idCor = idCor;
-    }
-
-    @XmlTransient
-    public Collection<Caixa> getCaixaCollection() {
-        return caixaCollection;
-    }
-
-    public void setCaixaCollection(Collection<Caixa> caixaCollection) {
-        this.caixaCollection = caixaCollection;
-    }
-
-    @XmlTransient
-    public Collection<Animal> getAnimalCollection() {
-        return animalCollection;
-    }
-
-    public void setAnimalCollection(Collection<Animal> animalCollection) {
-        this.animalCollection = animalCollection;
     }
 
     public Animal getCdAnimalMae() {
@@ -233,30 +217,12 @@ public class Animal implements Serializable {
         this.cdAnimalMae = cdAnimalMae;
     }
 
-    @XmlTransient
-    public Collection<Animal> getAnimalCollection1() {
-        return animalCollection1;
-    }
-
-    public void setAnimalCollection1(Collection<Animal> animalCollection1) {
-        this.animalCollection1 = animalCollection1;
-    }
-
     public Animal getCdAnimalPai() {
         return cdAnimalPai;
     }
 
     public void setCdAnimalPai(Animal cdAnimalPai) {
         this.cdAnimalPai = cdAnimalPai;
-    }
-
-    @XmlTransient
-    public Collection<Animal> getAnimalCollection2() {
-        return animalCollection2;
-    }
-
-    public void setAnimalCollection2(Collection<Animal> animalCollection2) {
-        this.animalCollection2 = animalCollection2;
     }
 
     public Animal getCdTouroPegouCria() {
@@ -299,11 +265,11 @@ public class Animal implements Serializable {
     public String toString() {
         return nmAnimal;
     }
-    
-    public void validar() throws ValidacaoException{
-        if (this.nmAnimal == null || this.nmAnimal.trim().isEmpty()){
+
+    public void validar() throws ValidacaoException {
+        if (this.nmAnimal == null || this.nmAnimal.trim().isEmpty()) {
             throw new ValidacaoException("Campo nome não preenchido!");
         }
     }
-    
+
 }
