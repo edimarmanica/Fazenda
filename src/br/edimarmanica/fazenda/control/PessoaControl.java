@@ -77,7 +77,6 @@ public final class PessoaControl {
         this.pessoaSelecionada = pessoaSelecionada;
         
         if (this.pessoaSelecionada != null){
-            System.out.println("aki");
             setPessoaDigitada(pessoaSelecionada);
         }
     }

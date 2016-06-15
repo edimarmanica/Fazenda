@@ -8,9 +8,15 @@ package br.edimarmanica.fazenda.view;
 import br.edimarmanica.fazenda.control.PessoaControl;
 import br.edimarmanica.fazenda.util.ValidacaoException;
 import javax.swing.JOptionPane;
+import org.jdesktop.beansbinding.AutoBinding;
+import org.jdesktop.beansbinding.BeanProperty;
+import org.jdesktop.beansbinding.Binding;
+import org.jdesktop.beansbinding.Bindings;
+import org.jdesktop.beansbinding.ELProperty;
 
 /**
- *https://www.youtube.com/watch?v=58liv_I62JMã
+ * https://www.youtube.com/watch?v=58liv_I62JMã
+ *
  * @author edimar
  */
 public class PessoaView extends javax.swing.JInternalFrame {
@@ -23,6 +29,25 @@ public class PessoaView extends javax.swing.JInternalFrame {
     public PessoaView() {
         control = new PessoaControl();
         initComponents();
+
+        Binding enableAlterar = Bindings.createAutoBinding(AutoBinding.UpdateStrategy.READ,
+                this, ELProperty.create("${control.pessoaDigitada.cdPessoa != null}"),
+                jbtAlterar, BeanProperty.create("enabled"));
+        enableAlterar.bind();
+        bindingGroup.addBinding(enableAlterar);
+        
+        
+        Binding enableInserir = Bindings.createAutoBinding(AutoBinding.UpdateStrategy.READ,
+                this, ELProperty.create("${control.pessoaDigitada.cdPessoa == null}"),
+                jbtInserir, BeanProperty.create("enabled"));
+        enableInserir.bind();
+        bindingGroup.addBinding(enableInserir);
+        
+        Binding enableExcluir = Bindings.createAutoBinding(AutoBinding.UpdateStrategy.READ,
+                this, ELProperty.create("${control.pessoaDigitada.cdPessoa != null}"),
+                jbtExcluir, BeanProperty.create("enabled"));
+        enableExcluir.bind();
+        bindingGroup.addBinding(enableExcluir);
     }
 
     public PessoaControl getControl() {
@@ -45,7 +70,7 @@ public class PessoaView extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jbtLimpar = new javax.swing.JButton();
-        jbtSalvar = new javax.swing.JButton();
+        jbtAlterar = new javax.swing.JButton();
         jbtExcluir = new javax.swing.JButton();
         jbtPesquisar = new javax.swing.JButton();
         jbtInserir = new javax.swing.JButton();
@@ -69,10 +94,10 @@ public class PessoaView extends javax.swing.JInternalFrame {
             }
         });
 
-        jbtSalvar.setText("Alterar");
-        jbtSalvar.addActionListener(new java.awt.event.ActionListener() {
+        jbtAlterar.setText("Alterar");
+        jbtAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtSalvarActionPerformed(evt);
+                jbtAlterarActionPerformed(evt);
             }
         });
 
@@ -107,7 +132,7 @@ public class PessoaView extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbtInserir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbtSalvar)
+                .addComponent(jbtAlterar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbtExcluir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -120,7 +145,7 @@ public class PessoaView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtLimpar)
-                    .addComponent(jbtSalvar)
+                    .addComponent(jbtAlterar)
                     .addComponent(jbtExcluir)
                     .addComponent(jbtPesquisar)
                     .addComponent(jbtInserir))
@@ -216,16 +241,16 @@ public class PessoaView extends javax.swing.JInternalFrame {
         control.limpar();
     }//GEN-LAST:event_jbtLimparActionPerformed
 
-    private void jbtSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtSalvarActionPerformed
+    private void jbtAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtAlterarActionPerformed
         try {
             // TODO add your handling code here:
             control.salvar();
             JOptionPane.showMessageDialog(this, "Alteração realizada com sucesso!", "Alterar", JOptionPane.INFORMATION_MESSAGE);
         } catch (ValidacaoException ex) {
-                        JOptionPane.showMessageDialog(this, "Erro: "+ex.getMessage(), "Alterar", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Erro: " + ex.getMessage(), "Alterar", JOptionPane.WARNING_MESSAGE);
         }
-        
-    }//GEN-LAST:event_jbtSalvarActionPerformed
+
+    }//GEN-LAST:event_jbtAlterarActionPerformed
 
     private void jbtExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtExcluirActionPerformed
         // TODO add your handling code here:
@@ -247,7 +272,7 @@ public class PessoaView extends javax.swing.JInternalFrame {
             control.salvar();
             JOptionPane.showMessageDialog(this, "Inserção realizada com sucesso!", "Inserir", JOptionPane.INFORMATION_MESSAGE);
         } catch (ValidacaoException ex) {
-                        JOptionPane.showMessageDialog(this, "Erro: "+ex.getMessage(), "Inserir", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Erro: " + ex.getMessage(), "Inserir", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jbtInserirActionPerformed
 
@@ -258,11 +283,11 @@ public class PessoaView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton jbtAlterar;
     private javax.swing.JButton jbtExcluir;
     private javax.swing.JButton jbtInserir;
     private javax.swing.JButton jbtLimpar;
     private javax.swing.JButton jbtPesquisar;
-    private javax.swing.JButton jbtSalvar;
     private javax.swing.JTable jtb;
     private javax.swing.JTextField jtfCodigo;
     private javax.swing.JTextField jtfNome;

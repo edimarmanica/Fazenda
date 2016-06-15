@@ -65,7 +65,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jbtInserir" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jbtSalvar" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbtAlterar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jbtExcluir" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -80,7 +80,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jbtLimpar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jbtSalvar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbtAlterar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jbtExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jbtPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jbtInserir" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -99,12 +99,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtLimparActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jbtSalvar">
+        <Component class="javax.swing.JButton" name="jbtAlterar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Alterar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtSalvarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtAlterarActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbtExcluir">
