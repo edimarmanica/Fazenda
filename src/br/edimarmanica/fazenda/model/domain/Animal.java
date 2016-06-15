@@ -13,6 +13,7 @@ import br.edimarmanica.fazenda.model.domain.enums.SituacaoAnimal;
 import br.edimarmanica.fazenda.model.domain.converters.CorConverter;
 import br.edimarmanica.fazenda.model.domain.converters.SexoConverter;
 import br.edimarmanica.fazenda.model.domain.converters.SituacaoAnimalConverter;
+import br.edimarmanica.fazenda.util.DateUtils;
 import br.edimarmanica.fazenda.util.ValidacaoException;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -71,7 +72,7 @@ public class Animal implements Serializable {
     @Basic(optional = false)
     @Convert(converter = SituacaoAnimalConverter.class)
     @Column(name = "id_situacao")
-    private SituacaoAnimal idSituacao;
+    private SituacaoAnimal idSituacao = SituacaoAnimal.Normal;
     @Column(name = "dt_nascimento")
     @Temporal(TemporalType.DATE)
     private Date dtNascimento;
@@ -270,6 +271,18 @@ public class Animal implements Serializable {
         if (this.nmAnimal == null || this.nmAnimal.trim().isEmpty()) {
             throw new ValidacaoException("Campo nome não preenchido!");
         }
+    }
+    
+    public int getAnos(){
+        return DateUtils.getYears(dtNascimento);
+    }
+    
+    public int getMeses(){
+        return DateUtils.getMonths(dtNascimento);
+    }
+    
+    public Date getPrevisaoCria(){
+        return DateUtils.addDays(dtPegouCria, 0, 9, 20, true);
     }
 
 }

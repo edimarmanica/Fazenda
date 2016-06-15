@@ -23,15 +23,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jScrollPane2" pref="0" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" max="32767" attributes="0"/>
+                  <Component id="jPanel2" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="0" pref="547" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <Component id="jPanel2" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -42,8 +39,8 @@
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="105" max="32767" attributes="0"/>
-              <Component id="jScrollPane2" min="-2" pref="71" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jScrollPane2" pref="259" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -61,14 +58,16 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jbtNovo" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jbtSalvar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jbtLimpar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jbtInserir" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jbtAlterar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jbtExcluir" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jbtPesquisar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -78,11 +77,12 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jbtNovo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jbtSalvar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jbtExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jbtPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="2" attributes="0">
+                      <Component id="jbtLimpar" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbtInserir" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbtAlterar" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbtExcluir" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbtPesquisar" alignment="2" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -90,20 +90,20 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jbtNovo">
+        <Component class="javax.swing.JButton" name="jbtLimpar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Novo"/>
+            <Property name="text" type="java.lang.String" value="Limpar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtNovoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtLimparActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jbtSalvar">
+        <Component class="javax.swing.JButton" name="jbtInserir">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Salvar"/>
+            <Property name="text" type="java.lang.String" value="Inserir"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtSalvarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtInserirActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbtExcluir">
@@ -120,6 +120,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtPesquisarActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jbtAlterar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Alterar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtAlterarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -152,17 +160,17 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jComboBox6" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jComboBox4" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="jComboBox2" alignment="0" pref="78" max="32767" attributes="0"/>
                                   <Component id="jtfNome" alignment="0" max="32767" attributes="0"/>
                               </Group>
+                              <Component id="jFormattedTextField2" alignment="0" min="-2" pref="156" max="-2" attributes="0"/>
                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jComboBox6" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jFormattedTextField4" alignment="0" pref="156" max="32767" attributes="0"/>
                                   <Component id="jFormattedTextField3" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="jFormattedTextField2" alignment="0" min="-2" pref="156" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -186,7 +194,7 @@
                                       <Component id="jComboBox3" min="-2" pref="152" max="-2" attributes="0"/>
                                       <Component id="jComboBox7" min="-2" pref="99" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="120" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -250,7 +258,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="52" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -591,6 +599,56 @@
                   <Editor/>
                   <Renderer/>
                 </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="4" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="4" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="4" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="4" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
               </TableColumnModel>
             </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
@@ -598,17 +656,69 @@
             </Property>
           </Properties>
           <BindingProperties>
-            <BindingProperty name="elements" source="Form" sourcePath="${control.pessoasTabela}" target="jtb" targetPath="elements" updateStrategy="0" immediately="true">
-              <Subbinding sourcePath="${cdPessoa}">
-                <BindingParameter name="NAME" value="C&#xf3;digo"/>
-                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="Integer.class"/>
-              </Subbinding>
-              <Subbinding sourcePath="${nmPessoa}">
+            <BindingProperty name="elements" source="Form" sourcePath="${control.objsTabela}" target="jtb" targetPath="elements" updateStrategy="0" immediately="true">
+              <Subbinding sourcePath="${nmAnimal}">
                 <BindingParameter name="NAME" value="Nome"/>
                 <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="String.class"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+              </Subbinding>
+              <Subbinding sourcePath="${cdAnimalMae}">
+                <BindingParameter name="NAME" value="M&#xe3;e"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="br.edimarmanica.fazenda.model.domain.Animal.class"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+              </Subbinding>
+              <Subbinding sourcePath="${pessoa}">
+                <BindingParameter name="NAME" value="Propriet&#xe1;rio"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="br.edimarmanica.fazenda.model.domain.Pessoa.class"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+              </Subbinding>
+              <Subbinding sourcePath="${dtNascimento}">
+                <BindingParameter name="NAME" value="Nascimento"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.util.Date.class"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+              </Subbinding>
+              <Subbinding sourcePath="${anos}">
+                <BindingParameter name="NAME" value="Anos"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="Integer.class"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+              </Subbinding>
+              <Subbinding sourcePath="${meses}">
+                <BindingParameter name="NAME" value="Meses"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="Integer.class"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+              </Subbinding>
+              <Subbinding sourcePath="${idSexo}">
+                <BindingParameter name="NAME" value="Sexo"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="br.edimarmanica.fazenda.model.domain.enums.Sexo.class"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+              </Subbinding>
+              <Subbinding sourcePath="${idSituacao}">
+                <BindingParameter name="NAME" value="Situa&#xe7;&#xe3;o"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="br.edimarmanica.fazenda.model.domain.enums.SituacaoAnimal.class"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+              </Subbinding>
+              <Subbinding sourcePath="${dtPegouCria}">
+                <BindingParameter name="NAME" value="Pegou Cria"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.util.Date.class"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+              </Subbinding>
+              <Subbinding sourcePath="${previsaoCria}">
+                <BindingParameter name="NAME" value="Previs&#xe3;o Cria"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.util.Date.class"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+              </Subbinding>
+              <Subbinding sourcePath="${idMamando}">
+                <BindingParameter name="NAME" value="Mamando"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="br.edimarmanica.fazenda.model.domain.enums.Booleano.class"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+              </Subbinding>
+              <Subbinding sourcePath="${idCor}">
+                <BindingParameter name="NAME" value="Cor"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="br.edimarmanica.fazenda.model.domain.enums.Cor.class"/>
+                <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
               </Subbinding>
             </BindingProperty>
-            <BindingProperty name="selectedElement" source="Form" sourcePath="${control.pessoaSelecionada}" target="jtb" targetPath="selectedElement" updateStrategy="0" immediately="false">
+            <BindingProperty name="selectedElement" source="Form" sourcePath="${control.objSelecionado}" target="jtb" targetPath="selectedElement" updateStrategy="0" immediately="false">
               <BindingParameter name="IGNORE_ADJUSTING" value="N"/>
             </BindingProperty>
           </BindingProperties>

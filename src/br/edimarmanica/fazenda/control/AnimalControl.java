@@ -6,14 +6,12 @@
 package br.edimarmanica.fazenda.control;
 
 import br.edimarmanica.fazenda.model.dao.AnimalDaoImpl;
-import br.edimarmanica.fazenda.model.service.ServiceLocator;
 import br.edimarmanica.fazenda.util.ValidacaoException;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 import org.jdesktop.observablecollections.ObservableCollections;
-import br.edimarmanica.fazenda.model.dao.CrudDao;
 import br.edimarmanica.fazenda.model.domain.Animal;
 import br.edimarmanica.fazenda.model.domain.Pessoa;
 import br.edimarmanica.fazenda.model.domain.enums.Cor;
@@ -21,7 +19,6 @@ import br.edimarmanica.fazenda.model.domain.enums.Sexo;
 import br.edimarmanica.fazenda.model.domain.enums.Booleano;
 import br.edimarmanica.fazenda.model.domain.enums.SituacaoAnimal;
 import java.util.Arrays;
-import java.util.Collections;
 
 /**
  *

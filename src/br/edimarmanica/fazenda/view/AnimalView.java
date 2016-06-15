@@ -6,11 +6,13 @@
 package br.edimarmanica.fazenda.view;
 
 import br.edimarmanica.fazenda.control.AnimalControl;
-import br.edimarmanica.fazenda.control.PessoaControl;
-import br.edimarmanica.fazenda.model.domain.enums.Sexo;
 import br.edimarmanica.fazenda.util.ValidacaoException;
-import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import org.jdesktop.beansbinding.AutoBinding;
+import org.jdesktop.beansbinding.BeanProperty;
+import org.jdesktop.beansbinding.Binding;
+import org.jdesktop.beansbinding.Bindings;
+import org.jdesktop.beansbinding.ELProperty;
 
 /**
  *https://www.youtube.com/watch?v=58liv_I62JMã
@@ -26,6 +28,25 @@ public class AnimalView extends javax.swing.JInternalFrame {
     public AnimalView() {
         control = new AnimalControl();
         initComponents();
+        
+         Binding enableAlterar = Bindings.createAutoBinding(AutoBinding.UpdateStrategy.READ,
+                this, ELProperty.create("${control.objDigitado.cdAnimal != null}"),
+                jbtAlterar, BeanProperty.create("enabled"));
+        enableAlterar.bind();
+        bindingGroup.addBinding(enableAlterar);
+        
+        
+        Binding enableInserir = Bindings.createAutoBinding(AutoBinding.UpdateStrategy.READ,
+                this, ELProperty.create("${control.objDigitado.cdAnimal == null}"),
+                jbtInserir, BeanProperty.create("enabled"));
+        enableInserir.bind();
+        bindingGroup.addBinding(enableInserir);
+        
+        Binding enableExcluir = Bindings.createAutoBinding(AutoBinding.UpdateStrategy.READ,
+                this, ELProperty.create("${control.objDigitado.cdAnimal != null}"),
+                jbtExcluir, BeanProperty.create("enabled"));
+        enableExcluir.bind();
+        bindingGroup.addBinding(enableExcluir);
     }
 
     public AnimalControl getControl() {
@@ -48,10 +69,11 @@ public class AnimalView extends javax.swing.JInternalFrame {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         jPanel1 = new javax.swing.JPanel();
-        jbtNovo = new javax.swing.JButton();
-        jbtSalvar = new javax.swing.JButton();
+        jbtLimpar = new javax.swing.JButton();
+        jbtInserir = new javax.swing.JButton();
         jbtExcluir = new javax.swing.JButton();
         jbtPesquisar = new javax.swing.JButton();
+        jbtAlterar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -92,17 +114,17 @@ public class AnimalView extends javax.swing.JInternalFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jbtNovo.setText("Novo");
-        jbtNovo.addActionListener(new java.awt.event.ActionListener() {
+        jbtLimpar.setText("Limpar");
+        jbtLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtNovoActionPerformed(evt);
+                jbtLimparActionPerformed(evt);
             }
         });
 
-        jbtSalvar.setText("Salvar");
-        jbtSalvar.addActionListener(new java.awt.event.ActionListener() {
+        jbtInserir.setText("Inserir");
+        jbtInserir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtSalvarActionPerformed(evt);
+                jbtInserirActionPerformed(evt);
             }
         });
 
@@ -120,18 +142,27 @@ public class AnimalView extends javax.swing.JInternalFrame {
             }
         });
 
+        jbtAlterar.setText("Alterar");
+        jbtAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtAlterarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jbtNovo)
-                .addGap(18, 18, 18)
-                .addComponent(jbtSalvar)
-                .addGap(18, 18, 18)
+                .addComponent(jbtLimpar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbtInserir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbtAlterar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbtExcluir)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbtPesquisar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -139,9 +170,10 @@ public class AnimalView extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtNovo)
-                    .addComponent(jbtSalvar)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jbtLimpar)
+                    .addComponent(jbtInserir)
+                    .addComponent(jbtAlterar)
                     .addComponent(jbtExcluir)
                     .addComponent(jbtPesquisar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -304,15 +336,15 @@ public class AnimalView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, 78, Short.MAX_VALUE)
                                 .addComponent(jtfNome, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jComboBox6, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jFormattedTextField4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-                                .addComponent(jFormattedTextField3, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jFormattedTextField3, javax.swing.GroupLayout.Alignment.LEADING)))
                         .addGap(55, 55, 55)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel14)
@@ -333,7 +365,7 @@ public class AnimalView extends javax.swing.JInternalFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGap(0, 120, Short.MAX_VALUE))))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -384,35 +416,81 @@ public class AnimalView extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        eLProperty = org.jdesktop.beansbinding.ELProperty.create("${control.pessoasTabela}");
+        eLProperty = org.jdesktop.beansbinding.ELProperty.create("${control.objsTabela}");
         org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, eLProperty, jtb);
-        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${cdPessoa}"));
-        columnBinding.setColumnName("Código");
-        columnBinding.setColumnClass(Integer.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nmPessoa}"));
+        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nmAnimal}"));
         columnBinding.setColumnName("Nome");
         columnBinding.setColumnClass(String.class);
+        columnBinding.setEditable(false);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${cdAnimalMae}"));
+        columnBinding.setColumnName("Mãe");
+        columnBinding.setColumnClass(br.edimarmanica.fazenda.model.domain.Animal.class);
+        columnBinding.setEditable(false);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${pessoa}"));
+        columnBinding.setColumnName("Proprietário");
+        columnBinding.setColumnClass(br.edimarmanica.fazenda.model.domain.Pessoa.class);
+        columnBinding.setEditable(false);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${dtNascimento}"));
+        columnBinding.setColumnName("Nascimento");
+        columnBinding.setColumnClass(java.util.Date.class);
+        columnBinding.setEditable(false);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${anos}"));
+        columnBinding.setColumnName("Anos");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding.setEditable(false);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${meses}"));
+        columnBinding.setColumnName("Meses");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding.setEditable(false);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${idSexo}"));
+        columnBinding.setColumnName("Sexo");
+        columnBinding.setColumnClass(br.edimarmanica.fazenda.model.domain.enums.Sexo.class);
+        columnBinding.setEditable(false);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${idSituacao}"));
+        columnBinding.setColumnName("Situação");
+        columnBinding.setColumnClass(br.edimarmanica.fazenda.model.domain.enums.SituacaoAnimal.class);
+        columnBinding.setEditable(false);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${dtPegouCria}"));
+        columnBinding.setColumnName("Pegou Cria");
+        columnBinding.setColumnClass(java.util.Date.class);
+        columnBinding.setEditable(false);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${previsaoCria}"));
+        columnBinding.setColumnName("Previsão Cria");
+        columnBinding.setColumnClass(java.util.Date.class);
+        columnBinding.setEditable(false);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${idMamando}"));
+        columnBinding.setColumnName("Mamando");
+        columnBinding.setColumnClass(br.edimarmanica.fazenda.model.domain.enums.Booleano.class);
+        columnBinding.setEditable(false);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${idCor}"));
+        columnBinding.setColumnName("Cor");
+        columnBinding.setColumnClass(br.edimarmanica.fazenda.model.domain.enums.Cor.class);
+        columnBinding.setEditable(false);
         bindingGroup.addBinding(jTableBinding);
-        jTableBinding.bind();binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${control.pessoaSelecionada}"), jtb, org.jdesktop.beansbinding.BeanProperty.create("selectedElement"));
+        jTableBinding.bind();binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${control.objSelecionado}"), jtb, org.jdesktop.beansbinding.BeanProperty.create("selectedElement"));
         bindingGroup.addBinding(binding);
 
         jScrollPane2.setViewportView(jtb);
+        if (jtb.getColumnModel().getColumnCount() > 0) {
+            jtb.getColumnModel().getColumn(4).setPreferredWidth(4);
+            jtb.getColumnModel().getColumn(5).setPreferredWidth(4);
+            jtb.getColumnModel().getColumn(6).setPreferredWidth(4);
+            jtb.getColumnModel().getColumn(10).setPreferredWidth(4);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(0, 547, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -421,8 +499,8 @@ public class AnimalView extends javax.swing.JInternalFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE))
         );
 
         bindingGroup.bind();
@@ -430,21 +508,21 @@ public class AnimalView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbtNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtNovoActionPerformed
+    private void jbtLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtLimparActionPerformed
         // TODO add your handling code here:
         control.novo();
-    }//GEN-LAST:event_jbtNovoActionPerformed
+    }//GEN-LAST:event_jbtLimparActionPerformed
 
-    private void jbtSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtSalvarActionPerformed
+    private void jbtInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtInserirActionPerformed
         try {
             // TODO add your handling code here:
             control.salvar();
-            JOptionPane.showMessageDialog(this, "Dados salvos!", "Salvar", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Inserção realizada com sucesso!", "Inserir", JOptionPane.INFORMATION_MESSAGE);
         } catch (ValidacaoException ex) {
-                        JOptionPane.showMessageDialog(this, "Erro: "+ex.getMessage(), "Salvar", JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "Erro: "+ex.getMessage(), "Inserir", JOptionPane.WARNING_MESSAGE);
         }
         
-    }//GEN-LAST:event_jbtSalvarActionPerformed
+    }//GEN-LAST:event_jbtInserirActionPerformed
 
     private void jbtExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtExcluirActionPerformed
         // TODO add your handling code here:
@@ -462,6 +540,17 @@ public class AnimalView extends javax.swing.JInternalFrame {
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox3ActionPerformed
+
+    private void jbtAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtAlterarActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            control.salvar();
+            JOptionPane.showMessageDialog(this, "Alteração realizada com sucesso!", "Alterar", JOptionPane.INFORMATION_MESSAGE);
+        } catch (ValidacaoException ex) {
+                        JOptionPane.showMessageDialog(this, "Erro: "+ex.getMessage(), "Alterar", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_jbtAlterarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -497,10 +586,11 @@ public class AnimalView extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton jbtAlterar;
     private javax.swing.JButton jbtExcluir;
-    private javax.swing.JButton jbtNovo;
+    private javax.swing.JButton jbtInserir;
+    private javax.swing.JButton jbtLimpar;
     private javax.swing.JButton jbtPesquisar;
-    private javax.swing.JButton jbtSalvar;
     private javax.swing.JTable jtb;
     private javax.swing.JTextField jtfCodigo;
     private javax.swing.JTextField jtfNome;
