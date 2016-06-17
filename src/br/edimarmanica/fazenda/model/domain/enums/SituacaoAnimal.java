@@ -9,7 +9,7 @@ package br.edimarmanica.fazenda.model.domain.enums;
  *
  * @author edimar
  */
-public enum SituacaoAnimal {
+public enum SituacaoAnimal implements Option {
     Normal((short) 1, "Normal"), Vendido((short) 2, "Vendido"), Morreu((short) 3, "Morreu"),
     TerceiroAtivo((short) 4, "Terc. Ativo"), TerceiroInativo((short) 5, "Terc. Inativo");
 

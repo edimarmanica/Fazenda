@@ -9,7 +9,7 @@ package br.edimarmanica.fazenda.model.domain.enums;
  *
  * @author edimar
  */
-public enum FluxoCaixa {
+public enum FluxoCaixa implements Option {
     ENTRADA((short)1, "Entrada"), SAIDA((short)2, "Saída");
     
     private short id;

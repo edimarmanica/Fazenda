@@ -9,7 +9,7 @@ package br.edimarmanica.fazenda.model.domain.enums;
  *
  * @author edimar
  */
-public enum Cor {
+public enum Cor implements Option {
     Branca((short) 1, "Branca"), Preta((short) 2, "Preta"), Holandes((short) 3, "Holandês"),
     Vermelha((short) 4, "Vermelha"), Amarela((short) 5, "Amarela"), Fumaca((short) 6, "Fumaça");
 

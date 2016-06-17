@@ -9,7 +9,7 @@ package br.edimarmanica.fazenda.model.domain.enums;
  *
  * @author edimar
  */
-public enum Booleano {
+public enum Booleano implements Option {
     Nao((short)0, "Não"), Sim((short)1, "Sim");
 
     private short id;
@@ -20,18 +20,22 @@ public enum Booleano {
         this.descricao = descricao;
     }
 
+    @Override
     public short getId() {
         return id;
     }
 
+    @Override
     public void setId(short id) {
         this.id = id;
     }
 
+    @Override
     public String getDescricao() {
         return descricao;
     }
 
+    @Override
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }

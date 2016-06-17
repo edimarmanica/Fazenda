@@ -9,19 +9,23 @@ package br.edimarmanica.fazenda.model.domain.enums;
  *
  * @author edimar
  */
-public enum Sexo {
-    F((short)0), M((short)1);
+public enum Sexo implements Option {
+    F((short) 0, "F"), M((short) 1, "M");
 
     private short id;
+    private String descricao;
 
-    private Sexo(short id) {
+    private Sexo(short id, String descricao) {
         this.id = id;
+        this.descricao = descricao;
     }
 
+    @Override
     public short getId() {
         return id;
     }
 
+    @Override
     public void setId(short id) {
         this.id = id;
     }
@@ -30,7 +34,15 @@ public enum Sexo {
     public String toString() {
         return this.name();
     }
-    
-    
+
+    @Override
+    public String getDescricao() {
+        return descricao;
+    }
+
+    @Override
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 
 }
