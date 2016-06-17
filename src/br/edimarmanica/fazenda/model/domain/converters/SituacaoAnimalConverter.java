@@ -5,6 +5,7 @@
  */
 package br.edimarmanica.fazenda.model.domain.converters;
 
+import br.edimarmanica.fazenda.model.domain.enums.Option;
 import br.edimarmanica.fazenda.model.domain.enums.SituacaoAnimal;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
@@ -14,21 +15,11 @@ import javax.persistence.Converter;
  * @author edimar
  */
 @Converter
-public class SituacaoAnimalConverter implements AttributeConverter<SituacaoAnimal, Short>{
+public class SituacaoAnimalConverter extends OptionConverter implements AttributeConverter<Option, Short> {
 
     @Override
-    public Short convertToDatabaseColumn(SituacaoAnimal attribute) {
-        return attribute.getId();
+    public Option[] values() {
+        return SituacaoAnimal.values();
     }
 
-    @Override
-    public SituacaoAnimal convertToEntityAttribute(Short dbData) {
-        for(SituacaoAnimal op: SituacaoAnimal.values()){
-            if (op.getId() == dbData){
-                return op;
-            }
-        }
-        return null;
-    }
-    
 }

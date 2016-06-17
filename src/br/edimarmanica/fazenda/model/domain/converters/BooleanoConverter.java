@@ -5,8 +5,8 @@
  */
 package br.edimarmanica.fazenda.model.domain.converters;
 
+import br.edimarmanica.fazenda.model.domain.enums.Booleano;
 import br.edimarmanica.fazenda.model.domain.enums.Option;
-import br.edimarmanica.fazenda.model.domain.enums.Sexo;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
@@ -15,11 +15,11 @@ import javax.persistence.Converter;
  * @author edimar
  */
 @Converter
-public class SexoConverter extends OptionConverter implements AttributeConverter<Option, Short> {
+public class BooleanoConverter extends OptionConverter implements AttributeConverter<Option, Short>{
 
     @Override
     public Option[] values() {
-        return Sexo.values();
+        return Booleano.values();
     }
 
 }

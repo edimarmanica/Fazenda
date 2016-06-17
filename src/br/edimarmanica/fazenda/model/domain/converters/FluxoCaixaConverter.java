@@ -6,6 +6,7 @@
 package br.edimarmanica.fazenda.model.domain.converters;
 
 import br.edimarmanica.fazenda.model.domain.enums.FluxoCaixa;
+import br.edimarmanica.fazenda.model.domain.enums.Option;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
@@ -14,20 +15,11 @@ import javax.persistence.Converter;
  * @author edimar
  */
 @Converter
-public class FluxoCaixaConverter implements AttributeConverter<FluxoCaixa, Short>{
+public class FluxoCaixaConverter extends OptionConverter implements AttributeConverter<Option, Short> {
 
     @Override
-    public Short convertToDatabaseColumn(FluxoCaixa attribute) {
-        return attribute.getId();
+    public Option[] values() {
+        return FluxoCaixa.values();
     }
 
-    @Override
-    public FluxoCaixa convertToEntityAttribute(Short dbData) {
-        for(FluxoCaixa op: FluxoCaixa.values()){
-            if (op.getId() == dbData){
-                return op;
-            }
-        }
-        return null;
-    }
 }

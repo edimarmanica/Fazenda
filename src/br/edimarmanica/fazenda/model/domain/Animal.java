@@ -5,7 +5,7 @@
  */
 package br.edimarmanica.fazenda.model.domain;
 
-import br.edimarmanica.fazenda.model.domain.converters.BooleanConverter;
+import br.edimarmanica.fazenda.model.domain.converters.BooleanoConverter;
 import br.edimarmanica.fazenda.model.domain.enums.Booleano;
 import br.edimarmanica.fazenda.model.domain.enums.Cor;
 import br.edimarmanica.fazenda.model.domain.enums.Sexo;
@@ -13,6 +13,7 @@ import br.edimarmanica.fazenda.model.domain.enums.SituacaoAnimal;
 import br.edimarmanica.fazenda.model.domain.converters.CorConverter;
 import br.edimarmanica.fazenda.model.domain.converters.SexoConverter;
 import br.edimarmanica.fazenda.model.domain.converters.SituacaoAnimalConverter;
+import br.edimarmanica.fazenda.model.domain.enums.Option;
 import br.edimarmanica.fazenda.util.DateUtils;
 import br.edimarmanica.fazenda.util.ValidacaoException;
 import java.io.Serializable;
@@ -86,9 +87,9 @@ public class Animal implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dtPegouCria;
     @Basic(optional = false)
-    @Convert(converter = BooleanConverter.class)
+    @Convert(converter = BooleanoConverter.class)
     @Column(name = "id_mamando")
-    private Booleano idMamando;
+    private Option idMamando;
     @Column(name = "ds_observacao")
     private String dsObservacao;
     @Column(name = "id_cor")
@@ -186,11 +187,11 @@ public class Animal implements Serializable {
         this.dtPegouCria = dtPegouCria;
     }
 
-    public Booleano getIdMamando() {
+    public Option getIdMamando() {
         return idMamando;
     }
 
-    public void setIdMamando(Booleano idMamando) {
+    public void setIdMamando(Option idMamando) {
         this.idMamando = idMamando;
     }
 

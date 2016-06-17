@@ -6,6 +6,7 @@
 package br.edimarmanica.fazenda.model.domain.converters;
 
 import br.edimarmanica.fazenda.model.domain.enums.Cor;
+import br.edimarmanica.fazenda.model.domain.enums.Option;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
@@ -14,24 +15,11 @@ import javax.persistence.Converter;
  * @author edimar
  */
 @Converter
-public class CorConverter implements AttributeConverter<Cor, Short>{
+public class CorConverter extends OptionConverter implements AttributeConverter<Option, Short> {
 
     @Override
-    public Short convertToDatabaseColumn(Cor attribute) {
-        return attribute.getId();
+    public Option[] values() {
+        return Cor.values();
     }
 
-    @Override
-    public Cor convertToEntityAttribute(Short dbData) {
-        if (dbData == null){
-            return null;
-        }
-        
-        for(Cor op: Cor.values()){
-            if (op.getId() == dbData){
-                return op;
-            }
-        }
-        return null;
-    }
 }
