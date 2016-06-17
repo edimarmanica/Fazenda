@@ -9,14 +9,13 @@ package br.edimarmanica.fazenda.model.domain.enums;
  *
  * @author edimar
  */
-public enum Cor {
-    Branca((short) 1, "Branca"), Preta((short) 2, "Preta"), Holandes((short) 3, "Holandês"),
-    Vermelha((short) 4, "Vermelha"), Amarela((short) 5, "Amarela"), Fumaca((short) 6, "Fumaça");
-
+public enum FluxoCaixa {
+    ENTRADA((short)1, "Entrada"), SAIDA((short)2, "Saída");
+    
     private short id;
     private String descricao;
 
-    private Cor(short id, String descricao) {
+    private FluxoCaixa(short id, String descricao) {
         this.id = id;
         this.descricao = descricao;
     }
@@ -37,4 +36,10 @@ public enum Cor {
         this.descricao = descricao;
     }
 
+    @Override
+    public String toString() {
+        return descricao;
+    }
+    
+    
 }

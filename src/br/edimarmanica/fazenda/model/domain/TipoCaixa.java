@@ -5,11 +5,13 @@
  */
 package br.edimarmanica.fazenda.model.domain;
 
+import br.edimarmanica.fazenda.model.domain.converters.FluxoCaixaConverter;
+import br.edimarmanica.fazenda.model.domain.enums.FluxoCaixa;
+import br.edimarmanica.fazenda.util.ValidacaoException;
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,10 +20,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -41,21 +41,18 @@ public class TipoCaixa implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
+    @Basic(optional = true)
     @Column(name = "cd_tipo_caixa")
     private Integer cdTipoCaixa;
     @Basic(optional = false)
     @Column(name = "nm_tipo_caixa")
     private String nmTipoCaixa;
     @Basic(optional = false)
+    @Convert(converter = FluxoCaixaConverter.class)
     @Column(name = "id_tipo")
-    private short idTipo;
+    private FluxoCaixa idTipo;
     @Column(name = "cd_bb")
     private Integer cdBb;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdTipoCaixa")
-    private Collection<Caixa> caixaCollection;
-    @OneToMany(mappedBy = "cdTipoCaixaPai")
-    private Collection<TipoCaixa> tipoCaixaCollection;
     @JoinColumn(name = "cd_tipo_caixa_pai", referencedColumnName = "cd_tipo_caixa")
     @ManyToOne
     private TipoCaixa cdTipoCaixaPai;
@@ -67,7 +64,7 @@ public class TipoCaixa implements Serializable {
         this.cdTipoCaixa = cdTipoCaixa;
     }
 
-    public TipoCaixa(Integer cdTipoCaixa, String nmTipoCaixa, short idTipo) {
+    public TipoCaixa(Integer cdTipoCaixa, String nmTipoCaixa, FluxoCaixa idTipo) {
         this.cdTipoCaixa = cdTipoCaixa;
         this.nmTipoCaixa = nmTipoCaixa;
         this.idTipo = idTipo;
@@ -89,11 +86,11 @@ public class TipoCaixa implements Serializable {
         this.nmTipoCaixa = nmTipoCaixa;
     }
 
-    public short getIdTipo() {
+    public FluxoCaixa getIdTipo() {
         return idTipo;
     }
 
-    public void setIdTipo(short idTipo) {
+    public void setIdTipo(FluxoCaixa idTipo) {
         this.idTipo = idTipo;
     }
 
@@ -103,24 +100,6 @@ public class TipoCaixa implements Serializable {
 
     public void setCdBb(Integer cdBb) {
         this.cdBb = cdBb;
-    }
-
-    @XmlTransient
-    public Collection<Caixa> getCaixaCollection() {
-        return caixaCollection;
-    }
-
-    public void setCaixaCollection(Collection<Caixa> caixaCollection) {
-        this.caixaCollection = caixaCollection;
-    }
-
-    @XmlTransient
-    public Collection<TipoCaixa> getTipoCaixaCollection() {
-        return tipoCaixaCollection;
-    }
-
-    public void setTipoCaixaCollection(Collection<TipoCaixa> tipoCaixaCollection) {
-        this.tipoCaixaCollection = tipoCaixaCollection;
     }
 
     public TipoCaixa getCdTipoCaixaPai() {
@@ -153,7 +132,13 @@ public class TipoCaixa implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edimarmanica.fazenda.bd.TipoCaixa[ cdTipoCaixa=" + cdTipoCaixa + " ]";
+        return nmTipoCaixa;
+    }
+    
+     public void validar() throws ValidacaoException {
+        if (this.nmTipoCaixa == null || this.nmTipoCaixa.trim().isEmpty()) {
+            throw new ValidacaoException("Campo nome não preenchido!");
+        }
     }
     
 }

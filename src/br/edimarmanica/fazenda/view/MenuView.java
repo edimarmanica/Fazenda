@@ -29,28 +29,18 @@ public class MenuView extends javax.swing.JFrame {
 
         desktopPane = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
-        jmnCad = new javax.swing.JMenu();
-        jmiCadPessoa = new javax.swing.JMenuItem();
         jmnList = new javax.swing.JMenu();
         jmiListPessoa = new javax.swing.JMenuItem();
         jmiAnimal = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Manica Farm 2016");
         setLocationByPlatform(true);
         setResizable(false);
 
-        jmnCad.setMnemonic('f');
-        jmnCad.setText("Cadastros");
-
-        jmiCadPessoa.setMnemonic('o');
-        jmiCadPessoa.setText("Pessoa");
-        jmnCad.add(jmiCadPessoa);
-
-        menuBar.add(jmnCad);
-
         jmnList.setMnemonic('e');
-        jmnList.setText("Listagens");
+        jmnList.setText("Cadastros");
 
         jmiListPessoa.setMnemonic('t');
         jmiListPessoa.setText("Pessoa");
@@ -68,6 +58,14 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
         jmnList.add(jmiAnimal);
+
+        jMenuItem1.setText("Tipo de Caixa");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jmnList.add(jMenuItem1);
 
         menuBar.add(jmnList);
 
@@ -104,6 +102,13 @@ public class MenuView extends javax.swing.JFrame {
         this.desktopPane.add(view);
         view.setVisible(true);
     }//GEN-LAST:event_jmiAnimalActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        TipoCaixaView view = new TipoCaixaView();
+        this.desktopPane.add(view);
+        view.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,10 +147,9 @@ public class MenuView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jmiAnimal;
-    private javax.swing.JMenuItem jmiCadPessoa;
     private javax.swing.JMenuItem jmiListPessoa;
-    private javax.swing.JMenu jmnCad;
     private javax.swing.JMenu jmnList;
     private javax.swing.JMenuBar menuBar;
     // End of variables declaration//GEN-END:variables
