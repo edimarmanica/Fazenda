@@ -5,7 +5,9 @@
  */
 package br.edimarmanica.fazenda.model.domain;
 
+import br.edimarmanica.fazenda.model.domain.converters.BooleanoConverter;
 import br.edimarmanica.fazenda.model.domain.converters.EmprestimoConverter;
+import br.edimarmanica.fazenda.model.domain.enums.Booleano;
 import br.edimarmanica.fazenda.model.domain.enums.Emprestimo;
 import br.edimarmanica.fazenda.util.ValidacaoException;
 import java.io.Serializable;
@@ -25,6 +27,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -80,6 +83,57 @@ public class Caixa extends Entidade implements Serializable {
     @JoinColumn(name = "cd_tipo_caixa", referencedColumnName = "cd_tipo_caixa")
     @ManyToOne(optional = false)
     private TipoCaixa cdTipoCaixa;
+    //campos apenas de pesquisa
+    @Transient
+    private Date dtPagamentoMenor;
+    @Transient
+    private Date dtPagamentoMaior;
+    @Transient
+    private Booleano idPago;
+    @Transient
+    private Date dtVencimentoMenor;
+    @Transient
+    private Date dtVencimentoMaior;
+
+    public Date getDtPagamentoMenor() {
+        return dtPagamentoMenor;
+    }
+
+    public void setDtPagamentoMenor(Date dtPagamentoMenor) {
+        this.dtPagamentoMenor = dtPagamentoMenor;
+    }
+
+    public Date getDtPagamentoMaior() {
+        return dtPagamentoMaior;
+    }
+
+    public void setDtPagamentoMaior(Date dtPagamentoMaior) {
+        this.dtPagamentoMaior = dtPagamentoMaior;
+    }
+
+    public Booleano getIdPago() {
+        return idPago;
+    }
+
+    public void setIdPago(Booleano idPago) {
+        this.idPago = idPago;
+    }
+
+    public Date getDtVencimentoMenor() {
+        return dtVencimentoMenor;
+    }
+
+    public void setDtVencimentoMenor(Date dtVencimentoMenor) {
+        this.dtVencimentoMenor = dtVencimentoMenor;
+    }
+
+    public Date getDtVencimentoMaior() {
+        return dtVencimentoMaior;
+    }
+
+    public void setDtVencimentoMaior(Date dtVencimentoMaior) {
+        this.dtVencimentoMaior = dtVencimentoMaior;
+    }
 
     public Caixa() {
     }
@@ -122,7 +176,7 @@ public class Caixa extends Entidade implements Serializable {
     }
 
     public void setDsCaixa(String dsCaixa) {
-        this.dsCaixa = dsCaixa;
+        this.dsCaixa = dsCaixa.toUpperCase();
     }
 
     public Date getDtVencimento() {
@@ -208,7 +262,9 @@ public class Caixa extends Entidade implements Serializable {
 
     @Override
     public void validar() throws ValidacaoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.dsCaixa == null || this.dsCaixa.trim().isEmpty()) {
+            throw new ValidacaoException("Campo descrição não preenchido!");
+        }
     }
 
 }

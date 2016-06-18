@@ -30,10 +30,10 @@ public class MenuView extends javax.swing.JFrame {
         desktopPane = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
         jmnList = new javax.swing.JMenu();
-        jmiListPessoa = new javax.swing.JMenuItem();
         jmiAnimal = new javax.swing.JMenuItem();
-        jmiTipoCaixa = new javax.swing.JMenuItem();
         jmiCaixa = new javax.swing.JMenuItem();
+        jmiListPessoa = new javax.swing.JMenuItem();
+        jmiTipoCaixa = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Manica Farm 2016");
@@ -42,6 +42,22 @@ public class MenuView extends javax.swing.JFrame {
 
         jmnList.setMnemonic('e');
         jmnList.setText("Cadastros");
+
+        jmiAnimal.setText("Animal");
+        jmiAnimal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAnimalActionPerformed(evt);
+            }
+        });
+        jmnList.add(jmiAnimal);
+
+        jmiCaixa.setText("Caixa");
+        jmiCaixa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiCaixaActionPerformed(evt);
+            }
+        });
+        jmnList.add(jmiCaixa);
 
         jmiListPessoa.setMnemonic('t');
         jmiListPessoa.setText("Pessoa");
@@ -52,14 +68,6 @@ public class MenuView extends javax.swing.JFrame {
         });
         jmnList.add(jmiListPessoa);
 
-        jmiAnimal.setText("Animal");
-        jmiAnimal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiAnimalActionPerformed(evt);
-            }
-        });
-        jmnList.add(jmiAnimal);
-
         jmiTipoCaixa.setText("Tipo de Caixa");
         jmiTipoCaixa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,14 +75,6 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
         jmnList.add(jmiTipoCaixa);
-
-        jmiCaixa.setText("Caixa");
-        jmiCaixa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiCaixaActionPerformed(evt);
-            }
-        });
-        jmnList.add(jmiCaixa);
 
         menuBar.add(jmnList);
 

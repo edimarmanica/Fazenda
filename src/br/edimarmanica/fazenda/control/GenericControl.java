@@ -44,6 +44,7 @@ public abstract class GenericControl<T> {
     public abstract void cfgComboENUM();
 
     public final void limpar() {
+        this.objDigitado = null;
         setObjDigitado(getNewObject());
     }
 

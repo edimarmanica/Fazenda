@@ -369,7 +369,7 @@ public class AnimalView extends javax.swing.JInternalFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 163, Short.MAX_VALUE))))
+                                .addGap(0, 236, Short.MAX_VALUE))))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );

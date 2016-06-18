@@ -13,6 +13,7 @@ import br.edimarmanica.fazenda.model.domain.Animal;
 import br.edimarmanica.fazenda.model.domain.Caixa;
 import br.edimarmanica.fazenda.model.domain.Pessoa;
 import br.edimarmanica.fazenda.model.domain.TipoCaixa;
+import br.edimarmanica.fazenda.model.domain.enums.Booleano;
 import br.edimarmanica.fazenda.model.domain.enums.Emprestimo;
 import java.util.Arrays;
 
@@ -27,13 +28,12 @@ public final class CaixaControl extends GenericControl<Caixa> {
     private List<Animal> animalCombo;
     private List<Pessoa> pessoaEmprestimoCombo;
     private List<Emprestimo> emprestimoCombo;
-    
+    private List<Booleano> pagoCombo;
 
     public CaixaControl() {
         super();
     }
 
-  
     @Override
     public void instanceDao() {
         dao = new CaixaDaoImpl();
@@ -79,6 +79,14 @@ public final class CaixaControl extends GenericControl<Caixa> {
         this.emprestimoCombo = emprestimoCombo;
     }
 
+    public List<Booleano> getPagoCombo() {
+        return pagoCombo;
+    }
+
+    public void setPagoCombo(List<Booleano> pagoCombo) {
+        this.pagoCombo = pagoCombo;
+    }
+
     @Override
     public void cfgComboBD() {
         pessoaCombo = ObservableCollections.observableList(new ArrayList<Pessoa>());
@@ -97,11 +105,12 @@ public final class CaixaControl extends GenericControl<Caixa> {
     @Override
     public void cfgComboENUM() {
         emprestimoCombo = Arrays.asList(Emprestimo.values());
-        
+        pagoCombo = Arrays.asList(Booleano.values());
     }
 
     @Override
     public Caixa getNewObject() {
         return new Caixa();
     }
+
 }

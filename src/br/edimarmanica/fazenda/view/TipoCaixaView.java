@@ -89,7 +89,7 @@ public class TipoCaixaView extends javax.swing.JInternalFrame {
         jtb = new javax.swing.JTable();
 
         setClosable(true);
-        setTitle("Cadastro de Animais");
+        setTitle("Cadastro de Tipo de Caixa");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
