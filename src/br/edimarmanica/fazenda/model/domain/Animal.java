@@ -55,7 +55,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Animal.findByIdMamando", query = "SELECT a FROM Animal a WHERE a.idMamando = :idMamando"),
     @NamedQuery(name = "Animal.findByDsObservacao", query = "SELECT a FROM Animal a WHERE a.dsObservacao = :dsObservacao"),
     @NamedQuery(name = "Animal.findByIdCor", query = "SELECT a FROM Animal a WHERE a.idCor = :idCor")})
-public class Animal implements Serializable {
+public class Animal extends Entidade implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -136,7 +136,7 @@ public class Animal implements Serializable {
     }
 
     public void setNmAnimal(String nmAnimal) {
-        this.nmAnimal = nmAnimal;
+        this.nmAnimal = nmAnimal.toUpperCase();
     }
 
     public Sexo getIdSexo() {
@@ -268,6 +268,7 @@ public class Animal implements Serializable {
         return nmAnimal;
     }
 
+    @Override
     public void validar() throws ValidacaoException {
         if (this.nmAnimal == null || this.nmAnimal.trim().isEmpty()) {
             throw new ValidacaoException("Campo nome não preenchido!");

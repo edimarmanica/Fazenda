@@ -5,7 +5,6 @@
  */
 package br.edimarmanica.fazenda.view;
 
-import br.edimarmanica.fazenda.control.AnimalControl;
 import br.edimarmanica.fazenda.control.TipoCaixaControl;
 import br.edimarmanica.fazenda.util.ValidacaoException;
 import javax.swing.JOptionPane;
@@ -217,9 +216,11 @@ public class TipoCaixaView extends javax.swing.JInternalFrame {
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${cdTipoCaixaPai}"));
         columnBinding.setColumnName("Pai");
         columnBinding.setColumnClass(br.edimarmanica.fazenda.model.domain.TipoCaixa.class);
+        columnBinding.setEditable(false);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${cdBb}"));
         columnBinding.setColumnName("Código BB");
         columnBinding.setColumnClass(Integer.class);
+        columnBinding.setEditable(false);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${control.objSelecionado}"), jtb, org.jdesktop.beansbinding.BeanProperty.create("selectedElement"));
         bindingGroup.addBinding(binding);
@@ -302,7 +303,7 @@ public class TipoCaixaView extends javax.swing.JInternalFrame {
 
     private void jbtLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtLimparActionPerformed
         // TODO add your handling code here:
-        control.novo();
+        control.limpar();
     }//GEN-LAST:event_jbtLimparActionPerformed
 
     private void jbtInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtInserirActionPerformed

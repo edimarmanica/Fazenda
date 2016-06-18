@@ -5,6 +5,7 @@
  */
 package br.edimarmanica.fazenda.model.domain;
 
+import br.edimarmanica.fazenda.util.ValidacaoException;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -39,7 +40,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Caixa.findByDtVencimento", query = "SELECT c FROM Caixa c WHERE c.dtVencimento = :dtVencimento"),
     @NamedQuery(name = "Caixa.findByIdEmprestimo", query = "SELECT c FROM Caixa c WHERE c.idEmprestimo = :idEmprestimo"),
     @NamedQuery(name = "Caixa.findByDsObservacao", query = "SELECT c FROM Caixa c WHERE c.dsObservacao = :dsObservacao")})
-public class Caixa implements Serializable {
+public class Caixa extends Entidade implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -200,5 +201,10 @@ public class Caixa implements Serializable {
     public String toString() {
         return "br.edimarmanica.fazenda.bd.Caixa[ cdCaixa=" + cdCaixa + " ]";
     }
-    
+
+    @Override
+    public void validar() throws ValidacaoException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

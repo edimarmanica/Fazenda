@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Pessoa.findAll", query = "SELECT p FROM Pessoa p"),
     @NamedQuery(name = "Pessoa.findByCdPessoa", query = "SELECT p FROM Pessoa p WHERE p.cdPessoa = :cdPessoa"),
     @NamedQuery(name = "Pessoa.findByNmPessoa", query = "SELECT p FROM Pessoa p WHERE p.nmPessoa = :nmPessoa")})
-public class Pessoa implements Serializable {
+public class Pessoa extends Entidade implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -94,10 +94,10 @@ public class Pessoa implements Serializable {
         return nmPessoa;
     }
 
+    @Override
     public void validar() throws ValidacaoException {
         if (this.nmPessoa == null || this.nmPessoa.trim().isEmpty()) {
             throw new ValidacaoException("Campo nome não preenchido!");
         }
     }
-
 }

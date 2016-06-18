@@ -31,20 +31,20 @@ public class PessoaView extends javax.swing.JInternalFrame {
         initComponents();
 
         Binding enableAlterar = Bindings.createAutoBinding(AutoBinding.UpdateStrategy.READ,
-                this, ELProperty.create("${control.pessoaDigitada.cdPessoa != null}"),
+                this, ELProperty.create("${control.objDigitado.cdPessoa != null}"),
                 jbtAlterar, BeanProperty.create("enabled"));
         enableAlterar.bind();
         bindingGroup.addBinding(enableAlterar);
         
         
         Binding enableInserir = Bindings.createAutoBinding(AutoBinding.UpdateStrategy.READ,
-                this, ELProperty.create("${control.pessoaDigitada.cdPessoa == null}"),
+                this, ELProperty.create("${control.objDigitado.cdPessoa == null}"),
                 jbtInserir, BeanProperty.create("enabled"));
         enableInserir.bind();
         bindingGroup.addBinding(enableInserir);
         
         Binding enableExcluir = Bindings.createAutoBinding(AutoBinding.UpdateStrategy.READ,
-                this, ELProperty.create("${control.pessoaDigitada.cdPessoa != null}"),
+                this, ELProperty.create("${control.objDigitado.cdPessoa != null}"),
                 jbtExcluir, BeanProperty.create("enabled"));
         enableExcluir.bind();
         bindingGroup.addBinding(enableExcluir);
@@ -68,6 +68,9 @@ public class PessoaView extends javax.swing.JInternalFrame {
     private void initComponents() {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
+        FazendaPUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("FazendaPU").createEntityManager();
+        pessoaQuery = java.beans.Beans.isDesignTime() ? null : FazendaPUEntityManager.createQuery("SELECT p FROM Pessoa p");
+        pessoaList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : pessoaQuery.getResultList();
         jPanel1 = new javax.swing.JPanel();
         jbtLimpar = new javax.swing.JButton();
         jbtAlterar = new javax.swing.JButton();
@@ -158,12 +161,12 @@ public class PessoaView extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Nome:");
 
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${control.pessoaDigitada.nmPessoa}"), jtfCodigo, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${control.objDigitado.nmPessoa}"), jtfCodigo, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
         jtfNome.setEditable(false);
 
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${control.pessoaDigitada.cdPessoa}"), jtfNome, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${control.objDigitado.cdPessoa}"), jtfNome, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -195,16 +198,16 @@ public class PessoaView extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        org.jdesktop.beansbinding.ELProperty eLProperty = org.jdesktop.beansbinding.ELProperty.create("${control.pessoasTabela}");
+        org.jdesktop.beansbinding.ELProperty eLProperty = org.jdesktop.beansbinding.ELProperty.create("${control.objsTabela}");
         org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, eLProperty, jtb);
         org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${cdPessoa}"));
         columnBinding.setColumnName("Código");
-        columnBinding.setColumnClass(Integer.class);
+        columnBinding.setEditable(false);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nmPessoa}"));
         columnBinding.setColumnName("Nome");
-        columnBinding.setColumnClass(String.class);
+        columnBinding.setEditable(false);
         bindingGroup.addBinding(jTableBinding);
-        jTableBinding.bind();binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${control.pessoaSelecionada}"), jtb, org.jdesktop.beansbinding.BeanProperty.create("selectedElement"));
+        jTableBinding.bind();binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${control.objSelecionado}"), jtb, org.jdesktop.beansbinding.BeanProperty.create("selectedElement"));
         bindingGroup.addBinding(binding);
 
         jScrollPane2.setViewportView(jtb);
@@ -278,6 +281,7 @@ public class PessoaView extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.persistence.EntityManager FazendaPUEntityManager;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -291,6 +295,8 @@ public class PessoaView extends javax.swing.JInternalFrame {
     private javax.swing.JTable jtb;
     private javax.swing.JTextField jtfCodigo;
     private javax.swing.JTextField jtfNome;
+    private java.util.List<br.edimarmanica.fazenda.model.domain.Pessoa> pessoaList;
+    private javax.persistence.Query pessoaQuery;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

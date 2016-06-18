@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "TipoCaixa.findByNmTipoCaixa", query = "SELECT t FROM TipoCaixa t WHERE t.nmTipoCaixa = :nmTipoCaixa"),
     @NamedQuery(name = "TipoCaixa.findByIdTipo", query = "SELECT t FROM TipoCaixa t WHERE t.idTipo = :idTipo"),
     @NamedQuery(name = "TipoCaixa.findByCdBb", query = "SELECT t FROM TipoCaixa t WHERE t.cdBb = :cdBb")})
-public class TipoCaixa implements Serializable {
+public class TipoCaixa extends Entidade implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -83,7 +83,7 @@ public class TipoCaixa implements Serializable {
     }
 
     public void setNmTipoCaixa(String nmTipoCaixa) {
-        this.nmTipoCaixa = nmTipoCaixa;
+        this.nmTipoCaixa = nmTipoCaixa.toUpperCase();
     }
 
     public FluxoCaixa getIdTipo() {
@@ -134,11 +134,12 @@ public class TipoCaixa implements Serializable {
     public String toString() {
         return nmTipoCaixa;
     }
-    
-     public void validar() throws ValidacaoException {
+
+    @Override
+    public void validar() throws ValidacaoException {
         if (this.nmTipoCaixa == null || this.nmTipoCaixa.trim().isEmpty()) {
             throw new ValidacaoException("Campo nome não preenchido!");
         }
     }
-    
+
 }

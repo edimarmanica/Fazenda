@@ -24,13 +24,8 @@ import java.util.Arrays;
  *
  * @author edimar
  */
-public final class AnimalControl {
+public final class AnimalControl extends GenericControl<Animal> {
 
-    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
-
-    private Animal objDigitado;
-    private Animal objSelecionado;
-    private List<Animal> objsTabela;
     private List<Pessoa> proprietariosCombo;
     private List<Animal> paiCombo;
     private List<Animal> maeCombo;
@@ -56,31 +51,8 @@ public final class AnimalControl {
         this.situacaoCombo = situacaoCombo;
     }
 
-    private final AnimalDaoImpl dao;
-
     public AnimalControl() {
-        dao = new AnimalDaoImpl();
-        objsTabela = ObservableCollections.observableList(new ArrayList<Animal>());
-
-        proprietariosCombo = ObservableCollections.observableList(new ArrayList<Pessoa>());
-        proprietariosCombo.addAll(dao.buscarPessoas());
-
-        paiCombo = ObservableCollections.observableList(new ArrayList<Animal>());
-        paiCombo.addAll(dao.buscarTourosAtivos());
-
-        touroCombo = ObservableCollections.observableList(new ArrayList<Animal>());
-        touroCombo.addAll(dao.buscarTourosAtivos());
-
-        maeCombo = ObservableCollections.observableList(new ArrayList<Animal>());
-        maeCombo.addAll(dao.buscarVacasAtivas());
-
-        sexoCombo = Arrays.asList(Sexo.values());
-        situacaoCombo = Arrays.asList(SituacaoAnimal.values());
-        corCombo = Arrays.asList(Cor.values());
-        mamandoCombo = Arrays.asList(Booleano.values());
-
-        novo();
-        pesquisar();
+        super();
     }
 
     public List<Booleano> getMamandoCombo() {
@@ -97,66 +69,6 @@ public final class AnimalControl {
 
     public void setCorCombo(List<Cor> corCombo) {
         this.corCombo = corCombo;
-    }
-
-    public void novo() {
-        setObjDigitado(new Animal());
-    }
-
-    public void pesquisar() {
-        objsTabela.clear();
-        objsTabela.addAll(dao.search(objDigitado));
-    }
-
-    public void salvar() throws ValidacaoException {
-        objDigitado.validar();
-        dao.insertOrUpdate(objDigitado);
-        novo();
-        pesquisar();
-    }
-
-    public void excluir() {
-        dao.delete(objDigitado);
-        novo();
-        pesquisar();
-    }
-
-    public Animal getObjDigitado() {
-        return objDigitado;
-    }
-
-    public void setObjDigitado(Animal objDigitado) {
-        Animal oldObjDigitada = this.objDigitado;
-        this.objDigitado = objDigitado;
-        pcs.firePropertyChange("objDigitado", oldObjDigitada, objDigitado);
-    }
-
-    public Animal getObjSelecionado() {
-        return objSelecionado;
-    }
-
-    public void setObjSelecionado(Animal objSelecionado) {
-        this.objSelecionado = objSelecionado;
-
-        if (this.objSelecionado != null) {
-            setObjDigitado(objSelecionado);
-        }
-    }
-
-    public List<Animal> getObjsTabela() {
-        return objsTabela;
-    }
-
-    public void setObjsTabela(List<Animal> objsTabela) {
-        this.objsTabela = objsTabela;
-    }
-
-    public void addPropertyChangeListener(PropertyChangeListener pcl) {
-        pcs.addPropertyChangeListener(pcl);
-    }
-
-    public void removePropertyChangeListener(PropertyChangeListener pcl) {
-        pcs.removePropertyChangeListener(pcl);
     }
 
     public List<Pessoa> getProprietariosCombo() {
@@ -189,6 +101,39 @@ public final class AnimalControl {
 
     public void setSexoCombo(List<Sexo> sexoCombo) {
         this.sexoCombo = sexoCombo;
+    }
+
+    @Override
+    public void instanceDao() {
+        dao = new AnimalDaoImpl();
+    }
+
+    @Override
+    public void cfgComboBD() {
+        proprietariosCombo = ObservableCollections.observableList(new ArrayList<Pessoa>());
+        proprietariosCombo.addAll(((AnimalDaoImpl) dao).buscarPessoas());
+
+        paiCombo = ObservableCollections.observableList(new ArrayList<Animal>());
+        paiCombo.addAll(((AnimalDaoImpl) dao).buscarTourosAtivos());
+
+        touroCombo = ObservableCollections.observableList(new ArrayList<Animal>());
+        touroCombo.addAll(((AnimalDaoImpl) dao).buscarTourosAtivos());
+
+        maeCombo = ObservableCollections.observableList(new ArrayList<Animal>());
+        maeCombo.addAll(((AnimalDaoImpl) dao).buscarVacasAtivas());
+    }
+
+    @Override
+    public void cfgComboENUM() {
+        sexoCombo = Arrays.asList(Sexo.values());
+        situacaoCombo = Arrays.asList(SituacaoAnimal.values());
+        corCombo = Arrays.asList(Cor.values());
+        mamandoCombo = Arrays.asList(Booleano.values());
+    }
+
+    @Override
+    public Animal getNewObject() {
+        return new Animal();
     }
 
 }

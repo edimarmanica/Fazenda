@@ -310,6 +310,10 @@ public class AnimalView extends javax.swing.JInternalFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${control.objDigitado.dsObservacao}"), jTextArea1, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
+
         jScrollPane1.setViewportView(jTextArea1);
 
         jFormattedTextField4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
@@ -365,7 +369,7 @@ public class AnimalView extends javax.swing.JInternalFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 120, Short.MAX_VALUE))))
+                                .addGap(0, 163, Short.MAX_VALUE))))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -510,7 +514,7 @@ public class AnimalView extends javax.swing.JInternalFrame {
 
     private void jbtLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtLimparActionPerformed
         // TODO add your handling code here:
-        control.novo();
+        control.limpar();
     }//GEN-LAST:event_jbtLimparActionPerformed
 
     private void jbtInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtInserirActionPerformed

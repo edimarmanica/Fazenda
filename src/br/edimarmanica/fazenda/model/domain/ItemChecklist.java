@@ -5,6 +5,7 @@
  */
 package br.edimarmanica.fazenda.model.domain;
 
+import br.edimarmanica.fazenda.util.ValidacaoException;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -32,7 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "ItemChecklist.findAll", query = "SELECT i FROM ItemChecklist i"),
     @NamedQuery(name = "ItemChecklist.findByCdItem", query = "SELECT i FROM ItemChecklist i WHERE i.cdItem = :cdItem"),
     @NamedQuery(name = "ItemChecklist.findByNmItem", query = "SELECT i FROM ItemChecklist i WHERE i.nmItem = :nmItem")})
-public class ItemChecklist implements Serializable {
+public class ItemChecklist extends Entidade implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -106,6 +107,11 @@ public class ItemChecklist implements Serializable {
     @Override
     public String toString() {
         return "br.edimarmanica.fazenda.bd.ItemChecklist[ cdItem=" + cdItem + " ]";
+    }
+
+    @Override
+    public void validar() throws ValidacaoException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
