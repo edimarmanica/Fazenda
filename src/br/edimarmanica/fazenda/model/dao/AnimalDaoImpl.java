@@ -49,6 +49,8 @@ public class AnimalDaoImpl extends CrudDaoImpl<Animal, Integer> {
             sql.append("AND p.idSituacao = :situacao ");
         }
         
+        sql.append(getSqlExtension(e));
+        
         sql.append("ORDER BY p.dtNascimento DESC");
         return sql.toString();
     }

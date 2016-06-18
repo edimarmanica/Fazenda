@@ -42,6 +42,8 @@ public class TipoCaixaDaoImpl extends CrudDaoImpl<TipoCaixa, Integer> {
             sql.append("AND p.idTipo = :fluxo ");
         }
         
+        sql.append(getSqlExtension(e));
+        
         sql.append("ORDER BY p.nmTipoCaixa");
         return sql.toString();
     }
@@ -70,6 +72,8 @@ public class TipoCaixaDaoImpl extends CrudDaoImpl<TipoCaixa, Integer> {
     
     public List<TipoCaixa> buscarTiposCaixaPai(){
         TipoCaixaDaoImpl dao = new TipoCaixaDaoImpl();
-        return dao.search(new TipoCaixa());
+        TipoCaixa requisitos = new TipoCaixa();
+        requisitos.addNullField("p.cdTipoCaixaPai");
+        return dao.search(requisitos);
     }
 }

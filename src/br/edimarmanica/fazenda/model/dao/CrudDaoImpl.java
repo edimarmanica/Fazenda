@@ -5,6 +5,7 @@
  */
 package br.edimarmanica.fazenda.model.dao;
 
+import br.edimarmanica.fazenda.model.domain.Entidade;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
@@ -16,14 +17,14 @@ import javax.persistence.Query;
  * @param <E>
  * @param <I>
  */
-public abstract class CrudDaoImpl<E,I> implements CrudDao<E> {
+public abstract class CrudDaoImpl<E, I> implements CrudDao<E> {
 
     protected abstract I getChave(E e);
-    
+
     protected abstract String getSql(E e);
-    
+
     protected abstract Map<String, Object> getSqlParametros(E e);
-    
+
     @Override
     public void insertOrUpdate(E e) {
         EntityManager em = Conexao.getEntityManager();
@@ -46,17 +47,33 @@ public abstract class CrudDaoImpl<E,I> implements CrudDao<E> {
         em.getTransaction().commit();
         em.close();
     }
-    
-    
-    
+
     @Override
-    public List<E> search(E e){
+    public List<E> search(E e) {
         EntityManager em = Conexao.getEntityManager();
         Query query = em.createQuery(getSql(e));
         Map<String, Object> parametros = getSqlParametros(e);
-        for(String key: parametros.keySet()){
+        for (String key : parametros.keySet()) {
             query.setParameter(key, parametros.get(key));
         }
         return query.getResultList();
     }
+
+    public String getSqlExtension(E e) {
+        String sql = "";
+        Entidade entity = (Entidade) e;
+        if (entity.getNotNullFields() != null) {
+            for (String field : entity.getNotNullFields()) {
+                sql = "AND " + field + " IS NOT NULL ";
+            }
+        }
+
+        if (entity.getNullFields() != null) {
+            for (String field : entity.getNullFields()) {
+                sql = "AND " + field + " IS NULL ";
+            }
+        }
+        return sql;
+    }
+
 }

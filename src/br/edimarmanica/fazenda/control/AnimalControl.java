@@ -6,9 +6,6 @@
 package br.edimarmanica.fazenda.control;
 
 import br.edimarmanica.fazenda.model.dao.AnimalDaoImpl;
-import br.edimarmanica.fazenda.util.ValidacaoException;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 import org.jdesktop.observablecollections.ObservableCollections;

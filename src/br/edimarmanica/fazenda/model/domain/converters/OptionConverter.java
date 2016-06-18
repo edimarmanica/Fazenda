@@ -23,6 +23,11 @@ public abstract class OptionConverter implements AttributeConverter<Option, Shor
 
     @Override
     public Option convertToEntityAttribute(Short dbData) {
+        
+        if (dbData == null){
+            return null;
+        }
+        
         for (Option op : values()) {
             if (op.getId() == dbData) {
                 return op;

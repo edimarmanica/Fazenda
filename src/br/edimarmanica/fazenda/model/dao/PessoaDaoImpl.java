@@ -33,6 +33,8 @@ public class PessoaDaoImpl extends CrudDaoImpl<Pessoa, Integer> {
             sql.append("AND p.nmPessoa like :nome ");
         }
         
+        sql.append(getSqlExtension(e));
+        
         sql.append("ORDER BY p.nmPessoa");
         return sql.toString();
     }

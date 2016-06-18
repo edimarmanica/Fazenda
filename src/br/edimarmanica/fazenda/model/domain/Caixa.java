@@ -5,12 +5,15 @@
  */
 package br.edimarmanica.fazenda.model.domain;
 
+import br.edimarmanica.fazenda.model.domain.converters.EmprestimoConverter;
+import br.edimarmanica.fazenda.model.domain.enums.Emprestimo;
 import br.edimarmanica.fazenda.util.ValidacaoException;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -61,7 +64,8 @@ public class Caixa extends Entidade implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dtVencimento;
     @Column(name = "id_emprestimo")
-    private Short idEmprestimo;
+    @Convert(converter = EmprestimoConverter.class)
+    private Emprestimo idEmprestimo;
     @Column(name = "ds_observacao")
     private String dsObservacao;
     @JoinColumn(name = "cd_animal", referencedColumnName = "cd_animal")
@@ -129,11 +133,11 @@ public class Caixa extends Entidade implements Serializable {
         this.dtVencimento = dtVencimento;
     }
 
-    public Short getIdEmprestimo() {
+    public Emprestimo getIdEmprestimo() {
         return idEmprestimo;
     }
 
-    public void setIdEmprestimo(Short idEmprestimo) {
+    public void setIdEmprestimo(Emprestimo idEmprestimo) {
         this.idEmprestimo = idEmprestimo;
     }
 
