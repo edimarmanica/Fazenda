@@ -49,14 +49,24 @@ public abstract class CrudDaoImpl<E, I> implements CrudDao<E> {
     }
 
     @Override
-    public List<E> search(E e) {
+    public List<E> search(E e, int limit, int offset) {
+        return getQuery(e).setFirstResult(offset).setMaxResults(limit).getResultList();
+    }
+
+    @Override
+    public int getNumberOfResults(E e) {
+        return getQuery(e).getResultList().size();
+    }
+
+    @Override
+    public Query getQuery(E e) {
         EntityManager em = Conexao.getEntityManager();
         Query query = em.createQuery(getSql(e));
         Map<String, Object> parametros = getSqlParametros(e);
         for (String key : parametros.keySet()) {
             query.setParameter(key, parametros.get(key));
         }
-        return query.getResultList();
+        return query;
     }
 
     public String getSqlExtension(E e) {

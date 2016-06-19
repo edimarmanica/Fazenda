@@ -6,6 +6,7 @@
 package br.edimarmanica.fazenda.model.dao;
 
 import java.util.List;
+import javax.persistence.Query;
 
 /**
  *
@@ -18,6 +19,10 @@ public interface CrudDao<E> {
 
     void insertOrUpdate(E e);
 
-    List<E> search(E e);
+    List<E> search(E e, int limit, int offset);
+
+    int getNumberOfResults(E e);
+
+    public Query getQuery(E e);
 
 }
