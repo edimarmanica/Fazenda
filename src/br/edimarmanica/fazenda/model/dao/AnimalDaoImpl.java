@@ -82,7 +82,7 @@ public class AnimalDaoImpl extends CrudDaoImpl<Animal, Integer> {
     
     public List<Pessoa> buscarPessoas(){
         PessoaDaoImpl pessoaDao = new PessoaDaoImpl();
-        return pessoaDao.search(new Pessoa(), 0, 1000);
+        return pessoaDao.search(new Pessoa());
     }
     
     public List<Animal> buscarTourosAtivos(){
@@ -90,7 +90,7 @@ public class AnimalDaoImpl extends CrudDaoImpl<Animal, Integer> {
         Animal requisitos = new Animal();
         requisitos.setIdSexo(Sexo.M);
         requisitos.setIdSituacao(SituacaoAnimal.Normal);
-        return dao.search(requisitos, 0, 1000);
+        return dao.search(requisitos);
     }
     
     public List<Animal> buscarVacasAtivas(){
@@ -98,6 +98,6 @@ public class AnimalDaoImpl extends CrudDaoImpl<Animal, Integer> {
         Animal requisitos = new Animal();
         requisitos.setIdSexo(Sexo.F);
         requisitos.setIdSituacao(SituacaoAnimal.Normal);
-        return dao.search(requisitos, 0, 1000);
+        return dao.search(requisitos);
     }
 }

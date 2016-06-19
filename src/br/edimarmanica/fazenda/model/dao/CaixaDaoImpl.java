@@ -117,20 +117,20 @@ public class CaixaDaoImpl extends CrudDaoImpl<Caixa, Integer> {
 
     public List<Pessoa> buscarPessoas() {
         PessoaDaoImpl pessoaDao = new PessoaDaoImpl();
-        return pessoaDao.search(new Pessoa(), 0, 1000);
+        return pessoaDao.search(new Pessoa());
     }
 
     public List<Animal> buscarAnimaisAtivos() {
         AnimalDaoImpl dao = new AnimalDaoImpl();
         Animal requisitos = new Animal();
         requisitos.setIdSituacao(SituacaoAnimal.Normal);
-        return dao.search(requisitos, 0, 1000);
+        return dao.search(requisitos);
     }
 
     public List<TipoCaixa> buscarTipoCaixa() {
         TipoCaixaDaoImpl dao = new TipoCaixaDaoImpl();
         TipoCaixa requisitos = new TipoCaixa();
         requisitos.addNotNullField("p.cdTipoCaixa");
-        return dao.search(requisitos, 0, 1000);
+        return dao.search(requisitos);
     }
 }

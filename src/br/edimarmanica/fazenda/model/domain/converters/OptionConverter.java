@@ -18,6 +18,10 @@ public abstract class OptionConverter implements AttributeConverter<Option, Shor
 
     @Override
     public Short convertToDatabaseColumn(Option attribute) {
+        if (attribute == null){
+            return null;
+        }
+        
         return attribute.getId();
     }
 

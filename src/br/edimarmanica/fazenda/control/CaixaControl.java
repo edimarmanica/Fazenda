@@ -15,6 +15,8 @@ import br.edimarmanica.fazenda.model.domain.Pessoa;
 import br.edimarmanica.fazenda.model.domain.TipoCaixa;
 import br.edimarmanica.fazenda.model.domain.enums.Booleano;
 import br.edimarmanica.fazenda.model.domain.enums.Emprestimo;
+import br.edimarmanica.fazenda.util.DateUtils;
+import br.edimarmanica.fazenda.util.ValidacaoException;
 import java.util.Arrays;
 
 /**
@@ -111,6 +113,17 @@ public final class CaixaControl extends GenericControl<Caixa> {
     @Override
     public Caixa getNewObject() {
         return new Caixa();
+    }
+    
+    /**
+     * adiciona as mesmas informações para o mês seguinte
+     * @throws br.edimarmanica.fazenda.util.ValidacaoException
+     */
+    public void vctoMesSeguinte() throws ValidacaoException{
+        objDigitado.setCdCaixa(null);
+        objDigitado.setDtVencimento(DateUtils.addDays(objDigitado.getDtVencimento(), 0, 1, 0, false));
+        objDigitado.setDtPagamento(null);
+        salvar();
     }
 
 }

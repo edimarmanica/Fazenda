@@ -74,6 +74,6 @@ public class TipoCaixaDaoImpl extends CrudDaoImpl<TipoCaixa, Integer> {
         TipoCaixaDaoImpl dao = new TipoCaixaDaoImpl();
         TipoCaixa requisitos = new TipoCaixa();
         requisitos.addNullField("p.cdTipoCaixaPai");
-        return dao.search(requisitos, 0, 1000);
+        return dao.search(requisitos);
     }
 }

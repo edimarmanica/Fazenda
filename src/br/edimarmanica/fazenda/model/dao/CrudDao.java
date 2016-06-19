@@ -19,10 +19,5 @@ public interface CrudDao<E> {
 
     void insertOrUpdate(E e);
 
-    List<E> search(E e, int limit, int offset);
-
-    int getNumberOfResults(E e);
-
-    public Query getQuery(E e);
-
+    List<E> search(E e);
 }

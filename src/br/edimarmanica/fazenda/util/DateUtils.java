@@ -54,8 +54,11 @@ public class DateUtils {
         if (greaterThanToday) {
             if (newDate.after(new GregorianCalendar())) {
                 return newDate.getTime();
+            }else{
+                return null;
             }
+        }else{
+            return newDate.getTime();
         }
-        return null;
     }
 }

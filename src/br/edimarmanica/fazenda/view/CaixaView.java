@@ -8,6 +8,8 @@ package br.edimarmanica.fazenda.view;
 import br.edimarmanica.fazenda.control.CaixaControl;
 import br.edimarmanica.fazenda.util.ValidacaoException;
 import java.awt.event.ItemEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.jdesktop.beansbinding.AutoBinding;
 import org.jdesktop.beansbinding.BeanProperty;
@@ -16,7 +18,8 @@ import org.jdesktop.beansbinding.Bindings;
 import org.jdesktop.beansbinding.ELProperty;
 
 /**
- *https://www.youtube.com/watch?v=58liv_I62JMã
+ * https://www.youtube.com/watch?v=58liv_I62JMã
+ *
  * @author edimar
  */
 public class CaixaView extends javax.swing.JInternalFrame {
@@ -29,26 +32,25 @@ public class CaixaView extends javax.swing.JInternalFrame {
     public CaixaView() {
         control = new CaixaControl();
         initComponents();
-        
-         Binding enableAlterar = Bindings.createAutoBinding(AutoBinding.UpdateStrategy.READ,
+
+        Binding enableAlterar = Bindings.createAutoBinding(AutoBinding.UpdateStrategy.READ,
                 this, ELProperty.create("${control.objDigitado.cdCaixa != null}"),
                 jbtAlterar, BeanProperty.create("enabled"));
         enableAlterar.bind();
         bindingGroup.addBinding(enableAlterar);
-        
+
         Binding enableMesSeguinte = Bindings.createAutoBinding(AutoBinding.UpdateStrategy.READ,
                 this, ELProperty.create("${control.objDigitado.cdCaixa != null}"),
                 jbtMesSeguinte, BeanProperty.create("enabled"));
         enableMesSeguinte.bind();
         bindingGroup.addBinding(enableMesSeguinte);
-        
-        
+
         Binding enableInserir = Bindings.createAutoBinding(AutoBinding.UpdateStrategy.READ,
                 this, ELProperty.create("${control.objDigitado.cdCaixa == null}"),
                 jbtInserir, BeanProperty.create("enabled"));
         enableInserir.bind();
         bindingGroup.addBinding(enableInserir);
-        
+
         Binding enableExcluir = Bindings.createAutoBinding(AutoBinding.UpdateStrategy.READ,
                 this, ELProperty.create("${control.objDigitado.cdCaixa != null}"),
                 jbtExcluir, BeanProperty.create("enabled"));
@@ -63,7 +65,6 @@ public class CaixaView extends javax.swing.JInternalFrame {
     public void setControl(CaixaControl control) {
         this.control = control;
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -118,19 +119,6 @@ public class CaixaView extends javax.swing.JInternalFrame {
         jFormattedTextField8 = new javax.swing.JFormattedTextField();
         jLabel14 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jPanel4 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jlbTotal = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jComboBox7 = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setTitle("Cadastro de Caixas");
@@ -298,9 +286,16 @@ public class CaixaView extends javax.swing.JInternalFrame {
         jLabel16.setText("Pagamento:");
 
         jFormattedTextField5.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        jFormattedTextField5.setFocusLostBehavior(javax.swing.JFormattedTextField.COMMIT);
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${control.objDigitado.dtPagamento}"), jFormattedTextField5, org.jdesktop.beansbinding.BeanProperty.create("value"));
         bindingGroup.addBinding(binding);
+
+        jFormattedTextField5.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jFormattedTextField5FocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -489,9 +484,9 @@ public class CaixaView extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel14)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jFormattedTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(367, Short.MAX_VALUE))
+                .addContainerGap(313, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(jLabel5)
@@ -518,113 +513,12 @@ public class CaixaView extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        jButton1.setText("Anterior");
-
-        jLabel17.setText("Exibindo:");
-
-        jLabel18.setText("à");
-
-        jLabel19.setText("de");
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${control.start}"), jLabel20, org.jdesktop.beansbinding.BeanProperty.create("text"));
-        bindingGroup.addBinding(binding);
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${control.end}"), jLabel21, org.jdesktop.beansbinding.BeanProperty.create("text"));
-        bindingGroup.addBinding(binding);
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${control.total}"), jlbTotal, org.jdesktop.beansbinding.BeanProperty.create("text"));
-        bindingGroup.addBinding(binding);
-
-        jButton2.setText("Próximo");
-
-        eLProperty = org.jdesktop.beansbinding.ELProperty.create("${control.limitCombo}");
-        jComboBoxBinding = org.jdesktop.swingbinding.SwingBindings.createJComboBoxBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, eLProperty, jComboBox3);
-        bindingGroup.addBinding(jComboBoxBinding);
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${control.limit}"), jComboBox3, org.jdesktop.beansbinding.BeanProperty.create("selectedItem"));
-        bindingGroup.addBinding(binding);
-
-        jComboBox3.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jComboBox3ItemStateChanged(evt);
-            }
-        });
-        jComboBox3.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jComboBox3PropertyChange(evt);
-            }
-        });
-
-        jLabel23.setText("Limit:");
-
-        jLabel24.setText("Offset:");
-
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        eLProperty = org.jdesktop.beansbinding.ELProperty.create("${control.offsetCombo}");
-        jComboBoxBinding = org.jdesktop.swingbinding.SwingBindings.createJComboBoxBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, eLProperty, jComboBox7);
-        bindingGroup.addBinding(jComboBoxBinding);
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${control.offset}"), jComboBox7, org.jdesktop.beansbinding.BeanProperty.create("selectedItem"));
-        bindingGroup.addBinding(binding);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel17)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel20)
-                .addGap(22, 22, 22)
-                .addComponent(jLabel18)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel21)
-                .addGap(41, 41, 41)
-                .addComponent(jLabel19)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlbTotal)
-                .addGap(82, 82, 82)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel23)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(jLabel24)
-                .addGap(3, 3, 3)
-                .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(198, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel18)
-                    .addComponent(jLabel17)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel20)
-                    .addComponent(jlbTotal)
-                    .addComponent(jLabel21)
-                    .addComponent(jButton2)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel23)
-                    .addComponent(jLabel24)
-                    .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -640,9 +534,7 @@ public class CaixaView extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))
         );
 
         bindingGroup.bind();
@@ -661,9 +553,9 @@ public class CaixaView extends javax.swing.JInternalFrame {
             control.salvar();
             JOptionPane.showMessageDialog(this, "Inserção realizada com sucesso!", "Inserir", JOptionPane.INFORMATION_MESSAGE);
         } catch (ValidacaoException ex) {
-                        JOptionPane.showMessageDialog(this, "Erro: "+ex.getMessage(), "Inserir", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Erro: " + ex.getMessage(), "Inserir", JOptionPane.WARNING_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_jbtInserirActionPerformed
 
     private void jbtExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtExcluirActionPerformed
@@ -686,33 +578,32 @@ public class CaixaView extends javax.swing.JInternalFrame {
             control.salvar();
             JOptionPane.showMessageDialog(this, "Alteração realizada com sucesso!", "Alterar", JOptionPane.INFORMATION_MESSAGE);
         } catch (ValidacaoException ex) {
-                        JOptionPane.showMessageDialog(this, "Erro: "+ex.getMessage(), "Alterar", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Erro: " + ex.getMessage(), "Alterar", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jbtAlterarActionPerformed
 
     private void jbtMesSeguinteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtMesSeguinteActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            control.vctoMesSeguinte();
+            JOptionPane.showMessageDialog(this, "Novo caixa realizado com sucesso!", "Novo caixa", JOptionPane.INFORMATION_MESSAGE);
+        } catch (ValidacaoException ex) {
+            JOptionPane.showMessageDialog(this, "Erro: " + ex.getMessage(), "Novo Caixa", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jbtMesSeguinteActionPerformed
 
-    private void jComboBox3PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jComboBox3PropertyChange
+    private void jFormattedTextField5FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFormattedTextField5FocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3PropertyChange
-
-    private void jComboBox3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox3ItemStateChanged
         
-    }//GEN-LAST:event_jComboBox3ItemStateChanged
+    }//GEN-LAST:event_jFormattedTextField5FocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JComboBox<String> jComboBox6;
-    private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JFormattedTextField jFormattedTextField4;
@@ -728,14 +619,7 @@ public class CaixaView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -746,7 +630,6 @@ public class CaixaView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
@@ -756,7 +639,6 @@ public class CaixaView extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbtLimpar;
     private javax.swing.JButton jbtMesSeguinte;
     private javax.swing.JButton jbtPesquisar;
-    private javax.swing.JLabel jlbTotal;
     private javax.swing.JTable jtb;
     private javax.swing.JTextField jtfCodigo;
     private javax.swing.JTextField jtfNome;
