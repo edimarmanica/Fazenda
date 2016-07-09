@@ -15,7 +15,8 @@ import org.jdesktop.beansbinding.Bindings;
 import org.jdesktop.beansbinding.ELProperty;
 
 /**
- *https://www.youtube.com/watch?v=58liv_I62JMã
+ * https://www.youtube.com/watch?v=58liv_I62JMã
+ *
  * @author edimar
  */
 public class AnimalView extends javax.swing.JInternalFrame {
@@ -28,20 +29,19 @@ public class AnimalView extends javax.swing.JInternalFrame {
     public AnimalView() {
         control = new AnimalControl();
         initComponents();
-        
-         Binding enableAlterar = Bindings.createAutoBinding(AutoBinding.UpdateStrategy.READ,
+
+        Binding enableAlterar = Bindings.createAutoBinding(AutoBinding.UpdateStrategy.READ,
                 this, ELProperty.create("${control.objDigitado.cdAnimal != null}"),
                 jbtAlterar, BeanProperty.create("enabled"));
         enableAlterar.bind();
         bindingGroup.addBinding(enableAlterar);
-        
-        
+
         Binding enableInserir = Bindings.createAutoBinding(AutoBinding.UpdateStrategy.READ,
                 this, ELProperty.create("${control.objDigitado.cdAnimal == null}"),
                 jbtInserir, BeanProperty.create("enabled"));
         enableInserir.bind();
         bindingGroup.addBinding(enableInserir);
-        
+
         Binding enableExcluir = Bindings.createAutoBinding(AutoBinding.UpdateStrategy.READ,
                 this, ELProperty.create("${control.objDigitado.cdAnimal != null}"),
                 jbtExcluir, BeanProperty.create("enabled"));
@@ -56,7 +56,6 @@ public class AnimalView extends javax.swing.JInternalFrame {
     public void setControl(AnimalControl control) {
         this.control = control;
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -523,9 +522,9 @@ public class AnimalView extends javax.swing.JInternalFrame {
             control.salvar();
             JOptionPane.showMessageDialog(this, "Inserção realizada com sucesso!", "Inserir", JOptionPane.INFORMATION_MESSAGE);
         } catch (ValidacaoException ex) {
-                        JOptionPane.showMessageDialog(this, "Erro: "+ex.getMessage(), "Inserir", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Erro: " + ex.getMessage(), "Inserir", JOptionPane.WARNING_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_jbtInserirActionPerformed
 
     private void jbtExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtExcluirActionPerformed
@@ -552,7 +551,7 @@ public class AnimalView extends javax.swing.JInternalFrame {
             control.salvar();
             JOptionPane.showMessageDialog(this, "Alteração realizada com sucesso!", "Alterar", JOptionPane.INFORMATION_MESSAGE);
         } catch (ValidacaoException ex) {
-                        JOptionPane.showMessageDialog(this, "Erro: "+ex.getMessage(), "Alterar", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Erro: " + ex.getMessage(), "Alterar", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jbtAlterarActionPerformed
 

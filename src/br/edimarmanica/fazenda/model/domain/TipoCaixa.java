@@ -9,6 +9,7 @@ import br.edimarmanica.fazenda.model.domain.converters.FluxoCaixaConverter;
 import br.edimarmanica.fazenda.model.domain.enums.FluxoCaixa;
 import br.edimarmanica.fazenda.util.ValidacaoException;
 import java.io.Serializable;
+import java.math.BigInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Convert;
@@ -52,7 +53,7 @@ public class TipoCaixa extends Entidade implements Serializable {
     @Column(name = "id_tipo")
     private FluxoCaixa idTipo;
     @Column(name = "cd_bb")
-    private Integer cdBb;
+    private BigInteger cdBb;
     @JoinColumn(name = "cd_tipo_caixa_pai", referencedColumnName = "cd_tipo_caixa")
     @ManyToOne
     private TipoCaixa cdTipoCaixaPai;
@@ -94,11 +95,11 @@ public class TipoCaixa extends Entidade implements Serializable {
         this.idTipo = idTipo;
     }
 
-    public Integer getCdBb() {
+    public BigInteger getCdBb() {
         return cdBb;
     }
 
-    public void setCdBb(Integer cdBb) {
+    public void setCdBb(BigInteger cdBb) {
         this.cdBb = cdBb;
     }
 

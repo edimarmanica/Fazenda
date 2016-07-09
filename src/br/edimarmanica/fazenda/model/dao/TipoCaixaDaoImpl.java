@@ -42,6 +42,10 @@ public class TipoCaixaDaoImpl extends CrudDaoImpl<TipoCaixa, Integer> {
             sql.append("AND p.idTipo = :fluxo ");
         }
         
+         if (e.getCdBb() != null){
+            sql.append("AND p.cdBb = :cdBb ");
+        }
+        
         sql.append(getSqlExtension(e));
         
         sql.append("ORDER BY p.nmTipoCaixa");
@@ -65,6 +69,10 @@ public class TipoCaixaDaoImpl extends CrudDaoImpl<TipoCaixa, Integer> {
         
         if (e.getIdTipo() != null){
             params.put("fluxo", e.getIdTipo());
+        }
+        
+        if (e.getCdBb()!= null){
+            params.put("cdBb", e.getCdBb());
         }
         
         return params;

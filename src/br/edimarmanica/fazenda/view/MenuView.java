@@ -34,6 +34,8 @@ public class MenuView extends javax.swing.JFrame {
         jmiCaixa = new javax.swing.JMenuItem();
         jmiListPessoa = new javax.swing.JMenuItem();
         jmiTipoCaixa = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Manica Farm 2016");
@@ -77,6 +79,18 @@ public class MenuView extends javax.swing.JFrame {
         jmnList.add(jmiTipoCaixa);
 
         menuBar.add(jmnList);
+
+        jMenu1.setText("Avançado");
+
+        jMenuItem1.setText("Load BB Mensal");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        menuBar.add(jMenu1);
 
         setJMenuBar(menuBar);
 
@@ -126,6 +140,13 @@ public class MenuView extends javax.swing.JFrame {
         view.setVisible(true);
     }//GEN-LAST:event_jmiCaixaActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        LoadBBView view = new LoadBBView();
+        this.desktopPane.add(view);
+        view.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -163,6 +184,8 @@ public class MenuView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jmiAnimal;
     private javax.swing.JMenuItem jmiCaixa;
     private javax.swing.JMenuItem jmiListPessoa;

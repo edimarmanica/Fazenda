@@ -5,7 +5,6 @@
  */
 package br.edimarmanica.fazenda.model.domain;
 
-import br.edimarmanica.fazenda.model.domain.converters.BooleanoConverter;
 import br.edimarmanica.fazenda.model.domain.converters.EmprestimoConverter;
 import br.edimarmanica.fazenda.model.domain.enums.Booleano;
 import br.edimarmanica.fazenda.model.domain.enums.Emprestimo;
