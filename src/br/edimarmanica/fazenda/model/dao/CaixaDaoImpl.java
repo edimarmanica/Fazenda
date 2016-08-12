@@ -42,6 +42,10 @@ public class CaixaDaoImpl extends CrudDaoImpl<Caixa, Integer> {
         if (e.getCdPessoa() != null) {
             sql.append("AND p.cdPessoa.cdPessoa = :cdPessoa ");
         }
+        
+        if (e.getCdTipoCaixa()!= null) {
+            sql.append("AND p.cdTipoCaixa.cdTipoCaixa = :cdTipoCaixa ");
+        }
 
         if (e.getIdEmprestimo() != null) {
             sql.append("AND p.idEmprestimo = :emprestimo ");
@@ -91,6 +95,10 @@ public class CaixaDaoImpl extends CrudDaoImpl<Caixa, Integer> {
         if (e.getCdPessoa() != null) {
             params.put("cdPessoa", e.getCdPessoa().getCdPessoa());
         }
+        
+        if (e.getCdTipoCaixa()!= null) {
+            params.put("cdTipoCaixa", e.getCdTipoCaixa().getCdTipoCaixa());
+        }
 
         if (e.getIdEmprestimo() != null) {
             params.put("emprestimo", e.getIdEmprestimo());
@@ -130,7 +138,7 @@ public class CaixaDaoImpl extends CrudDaoImpl<Caixa, Integer> {
     public List<TipoCaixa> buscarTipoCaixa() {
         TipoCaixaDaoImpl dao = new TipoCaixaDaoImpl();
         TipoCaixa requisitos = new TipoCaixa();
-        requisitos.addNotNullField("p.cdTipoCaixa");
+        requisitos.addNotNullField("p.cdTipoCaixaPai");
         return dao.search(requisitos);
     }
 }

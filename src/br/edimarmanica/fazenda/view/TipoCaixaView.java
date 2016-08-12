@@ -219,7 +219,6 @@ public class TipoCaixaView extends javax.swing.JInternalFrame {
         columnBinding.setEditable(false);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${cdBb}"));
         columnBinding.setColumnName("Código BB");
-        columnBinding.setColumnClass(Integer.class);
         columnBinding.setEditable(false);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${control.objSelecionado}"), jtb, org.jdesktop.beansbinding.BeanProperty.create("selectedElement"));
