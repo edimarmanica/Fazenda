@@ -56,7 +56,7 @@ public class Caixa extends Entidade implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @Column(name = "vl_caixa")
-    private BigDecimal vlCaixa;
+    private Double vlCaixa;
     @Column(name = "dt_pagamento")
     @Temporal(TemporalType.DATE)
     private Date dtPagamento;
@@ -141,7 +141,7 @@ public class Caixa extends Entidade implements Serializable {
         this.cdCaixa = cdCaixa;
     }
 
-    public Caixa(Integer cdCaixa, BigDecimal vlCaixa) {
+    public Caixa(Integer cdCaixa, Double vlCaixa) {
         this.cdCaixa = cdCaixa;
         this.vlCaixa = vlCaixa;
     }
@@ -154,11 +154,11 @@ public class Caixa extends Entidade implements Serializable {
         this.cdCaixa = cdCaixa;
     }
 
-    public BigDecimal getVlCaixa() {
+    public Double getVlCaixa() {
         return vlCaixa;
     }
 
-    public void setVlCaixa(BigDecimal vlCaixa) {
+    public void setVlCaixa(Double vlCaixa) {
         this.vlCaixa = vlCaixa;
     }
 

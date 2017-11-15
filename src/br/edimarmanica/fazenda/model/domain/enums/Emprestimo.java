@@ -10,7 +10,7 @@ package br.edimarmanica.fazenda.model.domain.enums;
  * @author edimar
  */
 public enum Emprestimo implements Option {
-    EMPRESTIMO((short)1, "Empréstimo"), DEVOLUCAO((short)1, "Devolução");
+    EMPRESTIMO((short)1, "Empréstimo"), DEVOLUCAO((short)2, "Devolução");
 
     private short id;
     private String descricao;

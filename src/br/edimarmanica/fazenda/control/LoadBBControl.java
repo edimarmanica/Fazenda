@@ -111,7 +111,7 @@ public final class LoadBBControl {
                         Caixa caixa = new Caixa();
                         caixa.setCdTipoCaixa(tcs.get(0));
                         caixa.setCdPessoa(pessoa);
-                        caixa.setVlCaixa((new BigDecimal(record.get("Valor"))).abs());
+                        caixa.setVlCaixa(Math.abs(new Double(record.get("Valor"))));
                         caixa.setDtPagamento(new Date(record.get("Data")));
                         caixa.setDtVencimento(new Date(record.get("Data")));
                         caixa.setDsCaixa("IMPORTAÇÃO BB 02");

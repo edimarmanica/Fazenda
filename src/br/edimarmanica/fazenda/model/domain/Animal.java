@@ -79,7 +79,7 @@ public class Animal extends Entidade implements Serializable {
     private Date dtNascimento;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "vl_venda")
-    private BigDecimal vlVenda;
+    private Double vlVenda;
     @Column(name = "dt_venda")
     @Temporal(TemporalType.DATE)
     private Date dtVenda;
@@ -163,11 +163,11 @@ public class Animal extends Entidade implements Serializable {
         this.dtNascimento = dtNascimento;
     }
 
-    public BigDecimal getVlVenda() {
+    public Double getVlVenda() {
         return vlVenda;
     }
 
-    public void setVlVenda(BigDecimal vlVenda) {
+    public void setVlVenda(Double vlVenda) {
         this.vlVenda = vlVenda;
     }
 
